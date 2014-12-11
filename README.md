@@ -65,3 +65,15 @@ lovetothink
 	
 	]
 	```
+	iii. through some sort of witch-ery, tye sends me back an array of hashes of the following format:
+	```ruby 
+	[ {user_id: 2, percent: 0.43}, {user_id: 3, twitter_percent: 0.56}, ... ]
+	```
+	iv. controller takes that data, does some database bullshit, and sends the following json array of hashes for each match:
+	```ruby 
+	[ 
+		{user_id: 2, name: "Eugene Lynch", blurb: "I LIKE CATS AND ELECTRITY", twitter_percent: 0.32}, 
+		{user_id: 3, name: "Tye Fucking Bennet", blurb: "WELCOME TO INVERCARGILL", twitter_percent: 0.56}, 
+		... 
+	]
+	```
