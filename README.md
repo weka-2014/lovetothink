@@ -1,6 +1,9 @@
 lovetothink
 ===========
 
+# Links
+* https://waffle.io/euglazer/lovetothink
+
 # Objectives
 * Find a way to connect people by common interests. 
 * Enjoy programming.
