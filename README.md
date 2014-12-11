@@ -24,7 +24,7 @@ lovetothink
 	```ruby
 	  [ {user_id: 1, twitter_username: "misfitmod"}, {user_id: 2, twitter_username: "deephousekitty"}, ... ]
 	```
-  ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. 
+  ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
 	```ruby
 	[ 
 		{ 
@@ -65,11 +65,11 @@ lovetothink
 	
 	]
 	```
-	iii. through some sort of witch-ery, tye sends me back an array of hashes of the following format:
+	iii. using httparty, the controller will receive the matcher's response, which will be of the following format:
 	```ruby 
 	[ {user_id: 2, twitter_percent: 0.43}, {user_id: 3, twitter_percent: 0.56}, ... ]
 	```
-	iv. controller takes that data, does some database bullshit, and sends the following json array of hashes for each match:
+	iv. controller takes that data, does some database bullshit, and arranges the following array of hashes for each match, to be sent to sarah's view:
 	```ruby 
 	[ 
 		{user_id: 2, name: "Eugene Lynch", blurb: "I LIKE CATS AND ELECTRITY", twitter_percent: 0.32}, 
