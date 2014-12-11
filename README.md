@@ -15,7 +15,7 @@ lovetothink
 * People are defined less by their looks, and more by how they engage with the world and what they consume.
 * Thinking is good.
 * Safety and comfort are necessary.
-* 
+
 # API Bullshit
 ## Json output from Eugene to Tye
 ```ruby
