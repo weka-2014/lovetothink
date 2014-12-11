@@ -16,8 +16,7 @@ lovetothink
 * Thinking is good.
 * Safety and comfort are necessary.
 
-# API Bullshit
-## Json output from Eugene to Tye
+# rails - c#matcher interactions
 * When the /matches page loads
 
 	i. controller iterates through all users and collects their twitter username into an array of hashes
@@ -77,3 +76,45 @@ lovetothink
 		... 
 	]
 	```
+	
+# API ENDPOINTS:
+```ruby
+get '/matches'
+	type: 'get'
+	url: '/matches'
+	matcher_data_out: array of hashes, each containing user_id and tweet data.
+	matcher_data_in: array of hashes, each containing a user_id and percent 
+	render_view: "matches.html.erb"
+	render_view_data: array of hashes, each containing user_id, name, blurb, and, twitter percent.
+
+get '/personal-profile'
+	type: 'get'
+	url: '/personal-profile'
+	render_view: "personal-profile.html.erb"
+
+get '/profile/:user_id'
+	type: 'get'
+	url: '/profile/:user_id'
+	matcher_data_out: one hash, with user_id and tweet data
+	matcher_data_in: one hash, with user_id and twitter_percent
+	render_view: "profile.html.erb"
+	render_view_data: one hash, with user_id, name, blurb, and twitter_percent.
+
+get '/'
+	type: 'get'
+	url: '/'
+	if current user logged in 
+		redirect_to /users/sign_in
+	else
+		redirect_to /matches
+	end
+
+get '/users/sign_in'
+	type: 'get'
+	url: '/users/sign_in'
+
+get '/users/sign_up'
+	type: 'get'
+	url: '/users/sign_up'
+
+```
