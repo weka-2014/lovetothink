@@ -77,7 +77,7 @@ lovetothink
 	]
 	```
 	
-# API ENDPOINTS:
+# RAILS API ENDPOINTS:
 ```ruby
 get '/matches'
 	type: 'get'
