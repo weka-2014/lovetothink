@@ -18,43 +18,49 @@ lovetothink
 
 # API Bullshit
 ## Json output from Eugene to Tye
-```ruby
-[ 
-	{ 
-		user_id: 1,
-		tweets: [
-			{ 
-				content: "blah blah blah blah",
-				hashtags: ["#this", "#that"]
-			},
-			{ 
-				content: "this is a tweet",
-				hashtags: ["#hashtag", "#meow"]
-			},
-			{ 
-				content: "lorem ipsum",
-				hashtags: ["#pitter", "#patter"]
-			}
-		]
-	},
-		user_id: 2,
-		tweets: [
-			{ 
-				content: "this is some text",
-				hashtags: ["#idk", "#tweet"]
-			},
-			{ 
-				content: "my tweets are understimulating",
-				hashtags: ["#fuckeverything", "#bluepens"]
-			},
-			{ 
-				content: "party party party",
-				hashtags: ["#seaworld", "#savewhales"]
-			}
-		]
-	},
-
-	...
-
-]
-```
+* When the /matches page loads 
+	i. controller iterates through all users and collects their twitter username into an array of hashes
+  ```ruby
+  	[ {user_id: 1, twitter_username: "euglazer"}, {user_id: 2, twitter_username: "deephousekitty"}, ... ]
+  ```
+  ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. 
+	```ruby
+	[ 
+		{ 
+			user_id: 1,
+			tweets: [
+				{ 
+					content: "blah blah blah blah",
+					hashtags: ["#this", "#that"]
+				},
+				{ 
+					content: "this is a tweet",
+					hashtags: ["#hashtag", "#meow"]
+				},
+				{ 
+					content: "lorem ipsum",
+					hashtags: ["#pitter", "#patter"]
+				}
+			]
+		},
+			user_id: 2,
+			tweets: [
+				{ 
+					content: "this is some text",
+					hashtags: ["#idk", "#tweet"]
+				},
+				{ 
+					content: "my tweets are understimulating",
+					hashtags: ["#fuckeverything", "#bluepens"]
+				},
+				{ 
+					content: "party party party",
+					hashtags: ["#seaworld", "#savewhales"]
+				}
+			]
+		},
+	
+		...
+	
+	]
+	```
