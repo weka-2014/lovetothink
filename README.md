@@ -22,7 +22,7 @@ lovetothink
 
 	i. controller iterates through all users and collects their twitter username into an array of hashes
 	```ruby
-	  [ {"user_id": 1, twitter_username: "misfitmod"}, {"user_id": 2, twitter_username: "deephousekitty"}, ... ]
+	  [ {"user_id": 1, "twitter_username": "misfitmod"}, {"user_id": 2, "twitter_username": "deephousekitty"}, ... ]
 	```
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
 	```ruby
