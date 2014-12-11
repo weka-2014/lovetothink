@@ -18,11 +18,12 @@ lovetothink
 
 # API Bullshit
 ## Json output from Eugene to Tye
-* When the /matches page loads 
+* When the /matches page loads
+
 	i. controller iterates through all users and collects their twitter username into an array of hashes
-  ```ruby
-  	[ {user_id: 1, twitter_username: "euglazer"}, {user_id: 2, twitter_username: "deephousekitty"}, ... ]
-  ```
+	```ruby
+	  [ {user_id: 1, twitter_username: "euglazer"}, {user_id: 2, twitter_username: "deephousekitty"}, ... ]
+	```
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. 
 	```ruby
 	[ 
