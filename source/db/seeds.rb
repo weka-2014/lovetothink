@@ -8,3 +8,9 @@ users.each_with_index do |user,index|
 	User.create!(email: Faker::Internet.email, name: Faker::Name.name, blurb: Faker::Hacker.say_something_smart, image_url: "https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg", password: "password",twitter_username: user)
 	puts "#{index + 1} users loaded"
 end
+
+User.all.each_with_index do |user,index|
+	puts "loading tweets for user #{index + 1}"
+	user.load_tweets
+	sleep(2)
+end

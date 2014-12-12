@@ -1,2 +1,12 @@
 PERSONAL PAGE UUUUUUUUU
 <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
+<p>user_id: <%= @personal_info[:user_id] %></p>
+<p>name: <%= @personal_info[:name] %></p>
+<p>blurb: <%= @personal_info[:blurb] %></p>
+<p>image_url: <%= @personal_info[:image_url] %></p>
+<ul>
+	<p>tweets</p>
+	<% @personal_info[:tweets].each do |tweet| %>
+		<li><%= tweet.content %></li>
+	<% end %>
+</ul>
