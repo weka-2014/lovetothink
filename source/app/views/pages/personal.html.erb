@@ -10,3 +10,15 @@ PERSONAL PAGE UUUUUUUUU
 		<li><%= tweet.content %></li>
 	<% end %>
 </ul>
+
+<ul>
+	<p>matches</p>
+	<% @match_data.each do |match| %>
+		<li>
+			name: <%= match["name"] %><br>
+			blurb: <%= match["blurb"] %><br>
+			image_url: <%= match["image_url"] %><br>
+			twitter_percent: <%= match["twitter_percent"] %><br>
+		</li>
+	<% end %>
+</ul>

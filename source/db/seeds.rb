@@ -14,3 +14,4 @@ User.all.each_with_index do |user,index|
 	user.load_tweets
 	sleep(2)
 end
+
