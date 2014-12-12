@@ -26,7 +26,7 @@ lovetothink
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
 	```ruby
 	[
-		user => {
+		"user" => {
 			"user_id" => 1,
 			"tweets" => [
 				{
@@ -40,7 +40,7 @@ lovetothink
 			]
 		},
 	
-		matches => [ 
+		"matches" => [ 
 			{ 
 				"user_id" => 2,
 				"tweets" => [
