@@ -2,7 +2,135 @@
     box-sizing: border-box;
 }
 
+html {
+
+  width: 100%;
+  height: 100%;
+}
+
 body {
+
+    position: relative;
     font-family: 'Lato', sans-serif;
     text-align: center;
+    /*font-size: 30px;
+    background-color: #F1E8E3*/
+
 }
+
+#info {
+
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 100px;
+  background-color: gray;
+
+}
+
+#pic {
+
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  left: 0;
+  background-color: pink;
+
+}
+
+#about {
+
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  background-color: #F4EECA;
+  right: 0;
+
+}
+
+#feed {
+
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  top: 300px;
+  background-color: black;
+
+}
+
+#news {
+
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  background-color: gray;
+
+}
+
+#matches {
+
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  background-color: #ACEADF;
+
+}
+
+#header {
+
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  top: 0;
+  background-color: #D5C6DB;
+
+}
+
+#footer {
+
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  top: 800px;
+  background-color: pink;
+
+}
+
+/*[type="submit"] {
+    border: none;
+    border-radius: 5px;
+    background-color: #B6B5AC;
+    color: #fff;
+    text-transform: lowercase;
+    font-size: 15px;
+    padding: 5px 35px;
+    height: 30px;
+    margin: 30px auto;
+
+}*/
+
+.circular {
+  width: 150px;
+  height: 150px;
+  border-radius:75px;
+  -webkit-border-radius: 75px;
+  -moz-border-radius: 75px;
+  background-color: yellow;
+  }
+
+/*[type="submit"] {
+    border: none;
+    border-radius: 5px;
+    background-color: #ACEADD;
+    color: #fff;
+    text-transform: lowercase;
+    font-size: 15px;
+    padding: 5px 35px;
+    height: 30px;
+    margin: 30px auto;
+
+}*/*/
+
+/*FF63BB*/
