@@ -84,6 +84,13 @@ body {
 
 }
 
+#profilefeed {
+
+  position: absolute;
+  background-color: white;
+
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -130,20 +137,21 @@ li.news {
   border-radius:75px;
   -webkit-border-radius: 75px;
   -moz-border-radius: 75px;
-  background-color: yellow;
+  background-color: white;
+
   }
 
-/*[type="submit"] {
+[type="submit"] {
     border: none;
     border-radius: 5px;
     background-color: #ACEADD;
     color: #fff;
     text-transform: lowercase;
     font-size: 15px;
-    padding: 5px 35px;
-    height: 30px;
-    margin: 30px auto;
+    /*padding: 5px 35px;*/
+    /*height: 30px;
+    margin: 30px auto;*/
 
-}*/*/
+}*/
 
 /*FF63BB*/
