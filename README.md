@@ -88,8 +88,8 @@ lovetothink
 	iv. controller takes that data, does some database bullshit, and arranges the following array of hashes for each match, to be sent to sarah's view:
 	```ruby 
 	[ 
-		{"user_id" => 2, name => "Eugene Lynch", "blurb" => "I LIKE CATS AND ELECTRITY", "twitter_percent" => 0.32}, 
-		{"user_id" => 3, name => "Tye Fucking Bennet", "blurb" => "WELCOME TO INVERCARGILL", "twitter_percent" => 0.56}, 
+		{"user_id" => 2, "name" => "Eugene Lynch", "blurb" => "I LIKE CATS AND ELECTRITY", "twitter_percent" => 0.32}, 
+		{"user_id" => 3, "name" => "Tye Fucking Bennet", "blurb" => "WELCOME TO INVERCARGILL", "twitter_percent" => 0.56}, 
 		... 
 	]
 	```
