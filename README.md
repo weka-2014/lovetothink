@@ -79,18 +79,13 @@ lovetothink
 	
 # RAILS API ENDPOINTS:
 ```ruby
-get '/matches'
+get '/personal'
 	type: 'get'
-	url: '/matches'
+	url: '/personal'
 	matcher_data_out: array of hashes, each containing user_id and tweet data.
 	matcher_data_in: array of hashes, each containing a user_id and percent 
-	render_view: "matches.html.erb"
-	render_view_data: array of hashes, each containing user_id, name, blurb, and, twitter percent.
-
-get '/personal-profile'
-	type: 'get'
-	url: '/personal-profile'
-	render_view: "personal-profile.html.erb"
+	render_view: "personal.html.erb"
+	render_view_data: array of hashes, each containing user_id, name, blurb, image_url, and twitter percent. Also user's info: name, blurb, image_url, last 5 tweets.
 
 get '/profile/:user_id'
 	type: 'get'
@@ -106,7 +101,7 @@ get '/'
 	if current user logged in 
 		redirect_to /users/sign_in
 	else
-		redirect_to /matches
+		redirect_to /personal
 	end
 
 get '/users/sign_in'
