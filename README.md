@@ -24,62 +24,62 @@ lovetothink
 	  [ {"user_id": 1, "twitter_username": "misfitmod"}, {"user_id": 2, "twitter_username": "deephousekitty"}, ... ]
 	```
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
-```ruby
-[
-	user: {
-		"user_id": 1,
-		"tweets": [
-			{
-				"content": "oooooooo wooooowwww hehehe"
-				"hashtags": ["LSD","wutislife"]
+	```ruby
+	[
+		user: {
+			"user_id": 1,
+			"tweets": [
+				{
+					"content": "oooooooo wooooowwww hehehe"
+					"hashtags": ["LSD","wutislife"]
+				},
+				{
+					"content": "i am a fruit"
+					"hashtags": ["stillLSD","IAMYEEZUS"]
+				}
+			]
+		},
+	
+		matches: [ 
+			{ 
+				"user_id": 2,
+				"tweets": [
+					{ 
+						"content": "blah blah blah blah",
+						"hashtags": ["this", "that"]
+					},
+					{ 
+						"content": "this is a tweet",
+						"hashtags": ["hashtag", "meow"]
+					},
+					{ 
+						"content": "lorem ipsum",
+						"hashtags": ["pitter", "patter"]
+					}
+				]
 			},
-			{
-				"content": "i am a fruit"
-				"hashtags": ["stillLSD","IAMYEEZUS"]
-			}
+				"user_id": 3,
+				"tweets": [
+					{ 
+						"content": "this is some text",
+						"hashtags": ["idk", "tweet"]
+					},
+					{ 
+						"content": "my tweets are understimulating",
+						"hashtags": ["fuckeverything", "bluepens"]
+					},
+					{ 
+						"content": "party party party",
+						"hashtags": ["seaworld", "savewhales"]
+					}
+				]
+			},
+		
+			...
+		
 		]
-	},
-
-	matches: [ 
-		{ 
-			"user_id": 2,
-			"tweets": [
-				{ 
-					"content": "blah blah blah blah",
-					"hashtags": ["this", "that"]
-				},
-				{ 
-					"content": "this is a tweet",
-					"hashtags": ["hashtag", "meow"]
-				},
-				{ 
-					"content": "lorem ipsum",
-					"hashtags": ["pitter", "patter"]
-				}
-			]
-		},
-			"user_id": 3,
-			"tweets": [
-				{ 
-					"content": "this is some text",
-					"hashtags": ["idk", "tweet"]
-				},
-				{ 
-					"content": "my tweets are understimulating",
-					"hashtags": ["fuckeverything", "bluepens"]
-				},
-				{ 
-					"content": "party party party",
-					"hashtags": ["seaworld", "savewhales"]
-				}
-			]
-		},
-	
-		...
-	
 	]
-]
-```
+	```
 	iii. using httparty, the controller will receive the matcher's response, which will be of the following format:
 	```ruby 
 	[ {"user_id": 2, "twitter_percent": 0.43}, {"user_id": 3, "twitter_percent": 0.56}, ... ]
