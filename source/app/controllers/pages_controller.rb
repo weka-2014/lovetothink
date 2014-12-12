@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-	def home 
+	def home
 		if current_user
 			redirect_to '/users/update_info'
 		else
@@ -23,3 +23,4 @@ class PagesController < ApplicationController
 	end
 
 end
+

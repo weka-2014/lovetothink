@@ -1,24 +1,58 @@
-PERSONAL PAGE UUUUUUUUU
-<%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
-<p>user_id: <%= @personal_info[:user_id] %></p>
-<p>name: <%= @personal_info[:name] %></p>
-<p>blurb: <%= @personal_info[:blurb] %></p>
-<p>image_url: <%= @personal_info[:image_url] %></p>
-<ul>
-	<p>tweets</p>
-	<% @personal_info[:tweets].each do |tweet| %>
-		<li><%= tweet.content %></li>
-	<% end %>
-</ul>
+<body>
 
-<ul>
-	<p>matches</p>
-	<% @match_data.each do |match| %>
-		<li>
-			name: <%= match["name"] %><br>
-			blurb: <%= match["blurb"] %><br>
-			image_url: <%= match["image_url"] %><br>
-			twitter_percent: <%= match["twitter_percent"] %><br>
-		</li>
-	<% end %>
-</ul>
+  <div id="header">
+    <h1> L2T </h1>
+    <nav>
+      <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
+    </nav>
+  </div>
+
+  <div id="info">
+
+    <div id="pic">
+      <img id="profile-img" class="vertalign" src="<%=@personal_info[:image_url]%>" />
+    </div>
+
+    <div id="about">
+      <div>
+        <h3><%=@personal_info[:name]%></h3>
+        <p><%=@personal_info[:blurb]%></p>
+        <input type="submit" name="inbox" value="inbox"/>
+      </div>
+    </div>
+  </div>
+
+  <div id="feed">
+    <div id="news">
+      <h2>TWEETS</h2>
+      <ul>
+        <% @personal_info[:tweets].each do |tweet|%>
+          <li><%=tweet.content%></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="matches">
+      <h2>MATCHES</h2>
+      <ul>
+        <% @match_data.each do |match| %>
+          <li>
+            <div id="match-img">
+              <img src="<%=match["image_url"]%>" />
+            </div>
+            <div id="match-info">
+              <h3><%=match["name"]%></h3>
+              <p><%=match["blurb"]%></p>
+            </div>
+            <div>
+              <p><%=match["twitter_percent"]%></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="footer"></div>
+
+</body>
