@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  # get '/matches', to: 'user#matches'
-  # root to: 'pages#home'
+  get '/', to: 'pages#home'
+  get '/personal', to: 'pages#personal'
 end
