@@ -26,51 +26,51 @@ lovetothink
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
 	```ruby
 	[
-		user: {
-			"user_id": 1,
-			"tweets": [
+		user => {
+			"user_id" => 1,
+			"tweets" => [
 				{
-					"content": "oooooooo wooooowwww hehehe"
-					"hashtags": ["LSD","wutislife"]
+					"content" => "oooooooo wooooowwww hehehe"
+					"hashtags" => ["LSD","wutislife"]
 				},
 				{
-					"content": "i am a fruit"
-					"hashtags": ["stillLSD","IAMYEEZUS"]
+					"content" => "i am a fruit"
+					"hashtags" => ["stillLSD","IAMYEEZUS"]
 				}
 			]
 		},
 	
-		matches: [ 
+		matches => [ 
 			{ 
-				"user_id": 2,
-				"tweets": [
+				"user_id" => 2,
+				"tweets" => [
 					{ 
-						"content": "blah blah blah blah",
-						"hashtags": ["this", "that"]
+						"content" => "blah blah blah blah",
+						"hashtags" => ["this", "that"]
 					},
 					{ 
-						"content": "this is a tweet",
-						"hashtags": ["hashtag", "meow"]
+						"content" => "this is a tweet",
+						"hashtags" => ["hashtag", "meow"]
 					},
 					{ 
-						"content": "lorem ipsum",
-						"hashtags": ["pitter", "patter"]
+						"content" => "lorem ipsum",
+						"hashtags" => ["pitter", "patter"]
 					}
 				]
 			},
-				"user_id": 3,
-				"tweets": [
+				"user_id" => 3,
+				"tweets" => [
 					{ 
-						"content": "this is some text",
-						"hashtags": ["idk", "tweet"]
+						"content" => "this is some text",
+						"hashtags" => ["idk", "tweet"]
 					},
 					{ 
-						"content": "my tweets are understimulating",
-						"hashtags": ["fuckeverything", "bluepens"]
+						"content" => "my tweets are understimulating",
+						"hashtags" => ["fuckeverything", "bluepens"]
 					},
 					{ 
-						"content": "party party party",
-						"hashtags": ["seaworld", "savewhales"]
+						"content" => "party party party",
+						"hashtags" => ["seaworld", "savewhales"]
 					}
 				]
 			},
@@ -78,6 +78,7 @@ lovetothink
 			...
 		
 		]
+	]
 	]
 	```
 	iii. using httparty, the controller will receive the matcher's response, which will be of the following format:
