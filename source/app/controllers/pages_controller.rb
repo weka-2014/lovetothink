@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 		#get user_data back from tye from httparty
 		#arrange user_ids and percents in descending order
 		#send to view!
-		raw_data = User.drunk_tye_matcher
+		raw_data = User.drunk_tye_matcher(current_user)
 		@match_data = User.drunk_tye_processor(raw_data)
 		@personal_info = current_user.personal_info
 	end

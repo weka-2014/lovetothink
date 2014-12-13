@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
 	def update_info 
 		current_user.load_tweets
+		current_user.load_videos
 		redirect_to '/personal'
 	end
 

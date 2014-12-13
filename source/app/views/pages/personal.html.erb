@@ -36,6 +36,12 @@
           <li><%=tweet.content%></li>
         <% end %>
       </ul>
+      <h2>VIDEOS</h2>
+      <ul>
+        <% @personal_info[:videos].each do |video|%>
+          <li><a href='<%=video.url%>'><%=video.title%></a></li>
+        <% end %>
+      </ul>
     </div>
     <div id="matches">
       <ul>
