@@ -87,19 +87,24 @@ class User < ActiveRecord::Base
 
   end
 
-  def self.drunk_tye_matcher
-  	data = User.all.map do |user|
-  		{"user_id" => user.id, "twitter_percent" => rand(0.0..1.0)}
+  def self.drunk_tye_matcher(current_user)
+  	data = User.where.not(id: current_user.id).map do |user|
+      twitter_percent = rand(0.0..1.0)
+      youtube_percent = rand(0.0..1.0)
+      overall_percent = (twitter_percent + youtube_percent) / 2.0
+  		{"user_id" => user.id, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "overall_percent" => overall_percent}
   	end
-  	data = data.sort_by { |k| p k["twitter_percent"] }.reverse
+  	data = data.sort_by { |k| p k["overall_percent"] }.reverse
 	end
 
   def self.drunk_tye_processor(match_data)
   	match_data.map do |match|
   		user_id = match["user_id"]
-  		twitter_percent = match["twitter_percent"]
+      twitter_percent = "#{(match["twitter_percent"]*100).to_i}%"
+      youtube_percent = "#{(match["youtube_percent"]*100).to_i}%"
+      overall_percent = "#{(match["overall_percent"]*100).to_i}%"
  			user = User.find(user_id)
-  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent}
+  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "overall_percent" => overall_percent }
   	end
   end
 
