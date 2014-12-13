@@ -9,9 +9,7 @@ class User < ActiveRecord::Base
   has_many :videos
 
   def load_tweets
-
-  	tweet_data = CLIENT.user_timeline(twitter_username)
-
+  	tweet_data = TWITTER.user_timeline(twitter_username)
   	tweet_data.each do |tweet_object|
   		tweet = tweets.create(content: tweet_object.text)
   		tweet_object.hashtags.each do |hashtag_object|
@@ -20,6 +18,27 @@ class User < ActiveRecord::Base
 	  		end
   		end
   	end
+  end
+
+  def load_videos
+    activity = YOUTUBE.activity(youtube_username)
+    video_ids = activity.map { |action| action.video_id }
+    video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
+    
+    video_data.each do |video_object|
+      url = video_object.player_url 
+      title = video_object.title
+      description = video_object.description
+      label = video_object.categories.map { |category| category.label }.first
+      author = video_object.author.name
+
+      video = videos.create(url: url, title: title, description: description, label: label, author: author)
+
+      video_object.keywords.each do |keyword|
+        video.keywords.create(name: keyword)
+      end
+
+    end
 
   end
 
