@@ -15,9 +15,16 @@ h1 { text-align: center; font-size: 40px; padding: 10px; }
 
 /*PERSONAL: INFO*/
 #personal > #info { position: absolute; width: 100%; height: 200px; top: 100px; background-color: gray; }
-#personal > #info > #pic { position: absolute; width: 30%; height: 100%; left: 0; background-color: pink; }
+#personal > #info > #pic { width: 30%; height: 100%; left: 0; background-color: pink; float: left;}
 #personal > #info > #pic > #profile-img { width: 150px; height: 150px; border-radius:75px; -webkit-border-radius: 75px; -moz-border-radius: 75px; margin: 0 auto; }
-#personal > #info > #about { position: absolute; width: 70%; height: 100%; background-color: #F4EECA; right: 0;}
+#personal > #info > #about { width: 40%; height: 100%; background-color: #F4EECA; float: left;}
+#personal > #info > #about > #personal-box {width: 70%; height: 100%}
+#personal > #info > #map > #personal-button {width: 30%; height: 100%; margin: 0 auto;}
+#personal > #info > #map {width: 30%; height: 100%; float: left;}
+
+#col1 {background-color: red}
+#col2 {background-color: blue}
+#news > ul > li {margin: 10px, 0;}
 
 /*PERSONAL: FEED*/
 #personal > #feed { position: absolute; width: 100%; height: 500px; top: 300px; background-color: gray; }
