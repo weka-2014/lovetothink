@@ -26,14 +26,14 @@ class User < ActiveRecord::Base
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets}
   end
 
-  def self.data(current_user) 
+  def self.data(current_user)
 
   	current_user_tweet_data = current_user.tweets.map do |tweet|
   		hashtags = tweet.hashtags.map do |hashtag|
   			hashtag.text
   		end
   		{"content" => tweet.content, "hashtags" => hashtags}
-  	end 
+  	end
   	current_user = {"user_id" => current_user.id, "tweets" => current_user_tweet_data}
 
   	matches = User.all.map do |user|
@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   		user_id = match["user_id"]
   		twitter_percent = match["twitter_percent"]
  			user = User.find(user_id)
-  		{"name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent}
+  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent}
   	end
   end
 

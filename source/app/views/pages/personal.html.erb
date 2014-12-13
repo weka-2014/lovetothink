@@ -1,4 +1,4 @@
-<body>
+<body id="personal">
 
   <div id="header">
     <h1> L2T </h1>
@@ -32,21 +32,29 @@
       </ul>
     </div>
     <div id="matches">
-      <h2>MATCHES</h2>
       <ul>
+        <h2>MATCHES</h2>
         <% @match_data.each do |match| %>
-          <li>
+
+          <li class="match">
+
             <div id="match-img">
-              <img src="<%=match["image_url"]%>" />
+              <a href="/profile/<%=match["id"]%>">
+                <img src="<%=match["image_url"]%>" class='vertalign' />
+              </a>
             </div>
+
             <div id="match-info">
               <h3><%=match["name"]%></h3>
               <p><%=match["blurb"]%></p>
             </div>
-            <div>
-              <p><%=match["twitter_percent"]%></p>
+
+            <div id="match-percent">
+              <!-- <p><%=match["twitter_percent"]%></p> -->
             </div>
+
           </li>
+
         <% end %>
       </ul>
     </div>
@@ -56,3 +64,5 @@
   <div id="footer"></div>
 
 </body>
+
+
