@@ -26,14 +26,14 @@ class User < ActiveRecord::Base
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets}
   end
 
-  def self.data(current_user) 
+  def self.data(current_user)
 
   	current_user_tweet_data = current_user.tweets.map do |tweet|
   		hashtags = tweet.hashtags.map do |hashtag|
   			hashtag.text
   		end
   		{"content" => tweet.content, "hashtags" => hashtags}
-  	end 
+  	end
   	current_user = {"user_id" => current_user.id, "tweets" => current_user_tweet_data}
 
   	matches = User.all.map do |user|

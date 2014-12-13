@@ -12,6 +12,6 @@ end
 User.all.each_with_index do |user,index|
 	puts "loading tweets for user #{index + 1}"
 	user.load_tweets
-	sleep(2)
+	sleep(1)
 end
 
