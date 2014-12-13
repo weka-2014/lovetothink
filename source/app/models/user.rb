@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos}
   end
 
-  def self.data(current_user) 
+  def self.data(current_user)
 
   	current_user_tweet_data = current_user.tweets.map do |tweet|
   		hashtags = tweet.hashtags.map do |hashtag|

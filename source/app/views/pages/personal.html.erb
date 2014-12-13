@@ -1,4 +1,4 @@
-<body>
+<body id="personal">
 
   <div id="header">
     <h1> L2T </h1>
@@ -14,11 +14,17 @@
     </div>
 
     <div id="about">
-      <div>
+      <div id="col1"></div>
+      <div id="col2"></div>
+        <div id="personal-box">
         <h3><%=@personal_info[:name]%></h3>
         <p><%=@personal_info[:blurb]%></p>
+        <div id="personal-button">
         <input type="submit" name="inbox" value="inbox"/>
       </div>
+      </div>
+    </div>
+    <div id="map"> <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg">
     </div>
   </div>
 
@@ -38,21 +44,28 @@
       </ul>
     </div>
     <div id="matches">
-      <h2>MATCHES</h2>
       <ul>
+        <h2>MATCHES</h2>
         <% @match_data.each do |match| %>
-          <li>
+
+          <li class="match">
+
             <div id="match-img">
-              <img src="<%=match["image_url"]%>" />
+              <a href="/profile/<%=match["id"]%>">
+                <img src="<%=match["image_url"]%>" class='vertalign' />
+              </a>
             </div>
+
             <div id="match-info">
               <h3><%=match["name"]%></h3>
               <p><%=match["blurb"]%></p>
             </div>
-            <div>
+            <div id="match-percent">
               <p><%=match["twitter_percent"]%></p>
             </div>
+
           </li>
+
         <% end %>
       </ul>
     </div>
@@ -62,3 +75,5 @@
   <div id="footer"></div>
 
 </body>
+
+
