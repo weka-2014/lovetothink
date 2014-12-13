@@ -1,37 +1,60 @@
-<html>
-     <title>L2T</title>
-  </head>
+<body id="profile">
 
-    <body>
-      <div id="header">
-        <h1> L2T </h1>
-        <div>
-        <input type="submit" name="profile" value="profile"/>
-        </div>
-        <div>
-        <input type="submit" name="log_out" value="sign out">
+  <div id="header">
+    <h1> L2T </h1>
+    <nav>
+      <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
+    </nav>
+  </div>
+
+  <div id="info">
+
+    <div id="pic">
+      <img id="profile-img" class="vertalign" src="<%=@personal_info[:image_url]%>" />
+    </div>
+
+    <div id="about">
+      <div id="personal-box">
+        <h3><%=@personal_info[:name]%></h3>
+        <p><%=@personal_info[:blurb]%></p>
+        <div id="personal-button">
+          <input type="submit" name="inbox" value="inbox"/>
         </div>
       </div>
+    </div>
 
-      <div id="info">
-        <div id="pic"><img id="profile-img" class="vertalign" src="https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg" />
-        </div>
-        <div id="about">
-        <div>
-        <input type="submit" name="send_msg" value="message"/>
-        </div>
-        </div>
+    <div id="map"> 
+      <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg">
+    </div>
+    
+  </div>
+
+  <div id="feed">
+    <div id="profile-feed">
+      <div id="profile-tweets">
+        <h2>TWEETS</h2>
+        <ul>
+          <% @personal_info[:tweets].each do |tweet| %>
+            <li><%= tweet.content %></li>
+          <% end %>
+        </ul> 
       </div>
-
-      <div id="feed">
-        <div id="profile-feed"></div></div>
+      <div id="profile-videos">
+        <h2>VIDEOS</h2>
+        <ul>
+          <% @personal_info[:videos].each do |video| %>
+            <li><a href="<%=video.url%>"><%= video.title %></a></li>
+          <% end %>
+        </ul>
       </div>
+    </div>
+  </div>
 
-      <div id="footer"></div>
+  <div id="footer"></div>
 
-    </body>
+</body>
 
-</html>
+
 
 
 

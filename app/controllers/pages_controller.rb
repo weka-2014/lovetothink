@@ -20,6 +20,9 @@ class PagesController < ApplicationController
 	end
 
 	def profile
+		id = params[:id]
+		user = User.find(id)
+		@personal_info = user.personal_info
 	end
 
 end
