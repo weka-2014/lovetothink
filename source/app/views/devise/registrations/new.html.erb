@@ -29,6 +29,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :youtube_username %><br />
+    <%= f.text_field :youtube_username, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
