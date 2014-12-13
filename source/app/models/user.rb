@@ -54,19 +54,37 @@ class User < ActiveRecord::Base
   		end
   		{"content" => tweet.content, "hashtags" => hashtags}
   	end 
-  	current_user = {"user_id" => current_user.id, "tweets" => current_user_tweet_data}
 
-  	matches = User.all.map do |user|
+    current_user_video_data = current_user.videos.map do |video|
+      keywords = video.keywords.map do |keyword|
+        keyword.name
+      end
+      {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
+    end
+
+  	current_user_data = {"user_id" => current_user.id, "tweets" => current_user_tweet_data, "videos" => current_user_video_data}
+
+  	match_data = User.all.map do |user|
+
   		user_tweet_data = user.tweets.map do |tweet|
   			hashtags = tweet.hashtags.map do |hashtag|
   				hashtag.text
   			end
   			{"content" => tweet.content, "hashtags" => hashtags}
   		end
-  		{"user_id" => user.id, "tweets" => user_tweet_data}
+
+      user_video_data = user.videos.map do |video|
+        keywords = video.keywords.map do |keyword|
+          keyword.name
+        end
+        {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
+      end
+
+  		{"user_id" => user.id, "tweets" => user_tweet_data, "videos" => user_video_data}
+
   	end
 
-  	{user: current_user, matches: matches}
+  	{"user" => current_user_data, "matches" => match_data}
 
   end
 
