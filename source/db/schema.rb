@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20141212032422) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "customers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hashtags", force: true do |t|
     t.integer  "tweet_id"
     t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
+    t.integer  "customer_id"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +55,5 @@ ActiveRecord::Schema.define(version: 20141212032422) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-
 
 end

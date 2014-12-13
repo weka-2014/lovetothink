@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   		user_id = match["user_id"]
   		twitter_percent = match["twitter_percent"]
  			user = User.find(user_id)
-  		{"name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent}
+  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent}
   	end
   end
 
