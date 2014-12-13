@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def personal_info
-  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets}
+  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos}
   end
 
   def self.data(current_user) 
