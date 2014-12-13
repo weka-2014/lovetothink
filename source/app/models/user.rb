@@ -24,22 +24,17 @@ class User < ActiveRecord::Base
     activity = YOUTUBE.activity(youtube_username)
     video_ids = activity.map { |action| action.video_id }
     video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
-    
     video_data.each do |video_object|
       url = video_object.player_url 
       title = video_object.title
       description = video_object.description
       label = video_object.categories.map { |category| category.label }.first
       author = video_object.author.name
-
       video = videos.create(url: url, title: title, description: description, label: label, author: author)
-
       video_object.keywords.each do |keyword|
         video.keywords.create(name: keyword)
       end
-
     end
-
   end
 
   def personal_info
@@ -64,23 +59,27 @@ class User < ActiveRecord::Base
 
   	current_user_data = {"user_id" => current_user.id, "tweets" => current_user_tweet_data, "videos" => current_user_video_data}
 
-  	match_data = User.all.map do |user|
+  	match_data = User.where.not(id: current_user.id).map do |user|
 
-  		user_tweet_data = user.tweets.map do |tweet|
-  			hashtags = tweet.hashtags.map do |hashtag|
-  				hashtag.text
-  			end
-  			{"content" => tweet.content, "hashtags" => hashtags}
-  		end
+      unless user.id == current_user.id  
 
-      user_video_data = user.videos.map do |video|
-        keywords = video.keywords.map do |keyword|
-          keyword.name
+    		user_tweet_data = user.tweets.map do |tweet|
+    			hashtags = tweet.hashtags.map do |hashtag|
+    				hashtag.text
+    			end
+    			{"content" => tweet.content, "hashtags" => hashtags}
+    		end
+
+        user_video_data = user.videos.map do |video|
+          keywords = video.keywords.map do |keyword|
+            keyword.name
+          end
+          {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
         end
-        {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
-      end
 
-  		{"user_id" => user.id, "tweets" => user_tweet_data, "videos" => user_video_data}
+    		{"user_id" => user.id, "tweets" => user_tweet_data, "videos" => user_video_data}
+
+      end
 
   	end
 
