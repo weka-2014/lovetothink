@@ -1,6 +1,12 @@
 require 'faker'
 
 User.destroy_all
+Track.destroy_all
+Video.destroy_all
+Tweet.destroy_all
+Hashtag.destroy_all
+Keyword.destroy_all
+Tag.destroy_all
 
 users = [
 	{twitter_username: "katyperry", youtube_username: "PewDieDie", soundcloud_username: "skrillex"},
