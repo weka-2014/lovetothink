@@ -7,9 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :tweets
   has_many :videos
-
-  validates_associated :tweets, uniqueness: true
-  validates_associated :videos, uniqueness: true
+  has_many :tracks
 
   def load_tweets
     tweets.destroy_all
