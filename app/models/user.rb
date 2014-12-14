@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
   #  :trackable, :rememberable, :recoverable,
   devise :database_authenticatable, :registerable, :validatable
 
-  has_many :tweets
-  has_many :videos
-  has_many :tracks
+  has_many :tweets, dependent: :destroy
+  has_many :videos, dependent: :destroy
+  has_many :tracks, dependent: :destroy
 
   def load_tweets
     tweets.destroy_all
-  	tweet_data = TWITTER.user_timeline(twitter_username, :count => 10)
+  	tweet_data = TWITTER.user_timeline(twitter_username, :count => 5)
   	tweet_data.each do |tweet_object|
   		tweet = tweets.create(content: tweet_object.text)
   		tweet_object.hashtags.each do |hashtag_object|
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   def load_videos
     videos.destroy_all
     activity = YOUTUBE.activity(youtube_username)
-    video_ids = activity.first(10).map { |action| action.video_id }
+    video_ids = activity.first(5).map { |action| action.video_id }
     video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
     video_data.each do |video_object|
       url = video_object.player_url 
@@ -34,15 +34,12 @@ class User < ActiveRecord::Base
       label = video_object.categories.map { |category| category.label }.first
       author = video_object.author.name
       video = videos.create(url: url, title: title, description: description, label: label, author: author)
-      video_object.keywords.each do |keyword|
-        video.keywords.create(name: keyword)
-      end
     end
   end
 
   def load_tracks
     tracks.destroy_all
-    track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 10)
+    track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 5)
     track_data.each do |track_object|
       image_url = track_object.artwork_url
       description = track_object.description
@@ -61,7 +58,7 @@ class User < ActiveRecord::Base
       tag_array = words.concat(strings)
 
       track = tracks.create(image_url: image_url, description: description, genre: genre, track_url: track_url, title: title, author: author)
-      tag_array.each do |tag|
+      tag_array.first(5).each do |tag|
         track.tags.create(name: tag)
       end
     end
@@ -81,10 +78,7 @@ class User < ActiveRecord::Base
   	end 
 
     current_user_video_data = current_user.videos.map do |video|
-      keywords = video.keywords.map do |keyword|
-        keyword.name
-      end
-      {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
+      {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author}
     end
 
     current_user_track_data = current_user.tracks.map do |track|
@@ -106,10 +100,7 @@ class User < ActiveRecord::Base
   		end
 
       user_video_data = user.videos.map do |video|
-        keywords = video.keywords.map do |keyword|
-          keyword.name
-        end
-        {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
+        {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author}
       end
 
       user_track_data = user.tracks.map do |track| 
