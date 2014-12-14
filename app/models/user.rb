@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :videos
 
+  validates_associated :tweets, uniqueness: true
+  validates_associated :videos, uniqueness: true
+
   def load_tweets
+    tweets.destroy_all
   	tweet_data = TWITTER.user_timeline(twitter_username)
   	tweet_data.each do |tweet_object|
   		tweet = tweets.create(content: tweet_object.text)
@@ -21,6 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def load_videos
+    videos.destroy_all
     activity = YOUTUBE.activity(youtube_username)
     video_ids = activity.map { |action| action.video_id }
     video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
