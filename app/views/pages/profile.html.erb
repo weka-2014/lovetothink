@@ -24,49 +24,32 @@
     </div>
 
     <div id="map">
-      <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg">
+<!--       <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg"> -->
     </div>
 
   </div>
 
-
-  <div id="feed">
-    <div id="news">
-      <div id="profile-feed">
-          <h2>TWEETS</h2>
-          <% @personal_info[:tweets].each do |tweet|%>
-            <li><%=tweet.content%></li>
-          <% end %>
-      </div>
-      <div id="profile-feed">
-          <h2>VIDEOS</h2>
-          <% @personal_info[:videos].each do |video|%>
-            <li><a href='<%=video.url%>'><%=video.title%></a></li>
-          <% end %>
-      </div>
-    </div>
-
-
-  <!-- <div id="feed">
-    <div id="profile-feed">
-      <div id="profile-tweets">
+  <div id="profile-feed">
+    <div class="profile-media">
         <h2>TWEETS</h2>
-        <ul>
-          <% @personal_info[:tweets].each do |tweet| %>
-            <li><%= tweet.content %></li>
-          <% end %>
-        </ul>
-      </div>
-      <div id="profile-videos">
-        <h2>VIDEOS</h2>
-        <ul>
-          <% @personal_info[:videos].each do |video| %>
-            <li><a href="<%=video.url%>"><%= video.title %></a></li>
-          <% end %>
-        </ul>
-      </div>
+        <% @personal_info[:tweets].each do |tweet|%>
+          <li><%=tweet.content%></li>
+        <% end %>
     </div>
-  </div> -->
+    <div class="profile-media">
+        <h2>VIDEOS</h2>
+        <% @personal_info[:videos].each do |video|%>
+          <li><a href='<%=video.url%>'><%=video.title%></a></li>
+        <% end %>
+    </div>
+    <div class="profile-media">
+        <h2>TRACKS</h2>
+        <% @personal_info[:tracks].each do |track|%>
+          <li><a href='<%=track.track_url%>'><%=track.title%></a></li>
+        <% end %>
+    </div>
+  </div>
+
 
   <div id="footer"></div>
 

@@ -6,14 +6,25 @@ body { position: relative; font-family: 'Lato', sans-serif; text-align: center; 
 ul { padding: 0;  margin: 0;  position: absolute;  height: 100%;  width: 100%; }
 li { list-style: none; }
 .vertalign { position: relative; top: 50%; transform: translateY(-50%); }
-input[type="submit"] { border: none; border-radius: 5px; background-color: #ACEADD; color: #fff; text-transform: lowercase; font-size: 15px;
-  /*padding: 5px 35px; height: 30px; margin: 30px auto;*/ }
+input[type="submit"] { border: none; border-radius: 5px; background-color: #ACEADD; color: #fff; text-transform: lowercase; font-size: 15px; }
 h3 { text-transform: uppercase;}
 h2 { text-transform: uppercase; font-size: 30px; padding-top: 20px; padding-bottom: 20px; }
 
 /*EVERYTHING: HEADER*/
 #header { position: absolute; width: 100%; height: 100px; top: 0; background-color: #D5C6DB; }
 h1 { text-align: center; font-size: 40px; padding: 10px; }
+
+/*EVERYTHING: FOOTER*/
+#footer { position: absolute; width: 100%; height: 100px; top: 800px; background-color: pink; }
+
+/*SIGN IN PAGE*/
+#signin > form > div.field > label { display: block; font-size: 14px; padding-top: 10px;}
+
+/*SIGN UP PAGE*/
+#signup > form > div.field > label { display: block; margin-bottom: 12px; margin-top:10px; font-size: 14px}
+
+/*SIGNIN BUTTONS*/
+.actions {padding: 30px;}
 
 /*PERSONAL: INFO*/
 #personal > #info { position: absolute; width: 100%; height: 200px; top: 100px; background-color: gray; }
@@ -24,43 +35,24 @@ h1 { text-align: center; font-size: 40px; padding: 10px; }
 #personal > #info > #map > #personal-button {width: 30%; height: 100%; margin: 0 auto;}
 #personal > #info > #map {width: 30%; height: 100%; float: left;}
 
-
 /*PERSONAL: FEED*/
 #personal > #feed { position: absolute; width: 100%; height: 500px; top: 300px; background-color: gray; }
-
 
 /*PERSONAL: FEED: NEWS*/
 #personal > #feed > #news { position: absolute; width: 50%; height: 100%; left: 0; background-color: #C9C2C2; overflow: scroll; font-size: 13px; }
 div.personal-media { position: relative; height: auto; overflow: visible;}
 #li-padding { padding: 10px;}
 
-
-
 /*PERSONAL: FEED: MATCHES*/
-#personal > #feed > #matches { position: absolute; width: 50%; height: 100%; right: 0; background-color: #ACEADF; overflow: scroll; }
-#personal > #feed > #matches > ul > li.match { position: relative; width: 100%; height: 20%; border-bottom: 1px solid white; }
-#personal > #feed > #matches > ul > li.match > #match-img { position: absolute; width: 15%; height: 100%; left: 0; }
-#personal > #feed > #matches > ul > li.match > #match-img > a > img { height: 80%; border-radius: 400px; margin: 0 auto;}
-#personal > #feed > #matches > ul > li.match > #match-percent { position: absolute; width: 15%; height: 100%; border-radius:40px; right: 0; }
-#personal > #feed > #matches > ul > li.match > #match-info { position: absolute; height: 100%; border-radius:40px; right: 15%; left: 15%; font-size: 13px; text-align: left }
-
-/* PROFILE: FEED*/
-#profile-feed { position: absolute; background-color: white; height: 500px; width: 60%; left: 20%; right: 20%; }
-
-/*EVERYTHING: FOOTER*/
-#footer { position: absolute; width: 100%; height: 100px; top: 800px; background-color: pink; }
-
-/*SIGN IN PAGE*/
-#signin > form > div.field > label { display: block; /*margin-bottom: 0px; margin-top:0px;*/ font-size: 14px; padding-top: 10px;}
-
-/*SIGN IN PAGE*/
-#signup > form > div.field > label { display: block; margin-bottom: 12px; margin-top:10px; font-size: 14px}
-
-
-/*SIGNIN BUTTONS*/
-.actions {padding: 30px;}
-
-/*FF63BB*/
+#matches { position: absolute; width: 50%; height: 100%; right: 0; background-color: #ACEADF; overflow: scroll; }
+li.match { position: relative; width: 100%; height: 100px; border-top: 1px solid white; }
+#match-img { position: absolute; width: 15%; height: 100%; left: 0; }
+#match-img > a > img { height: 80%; border-radius: 400px; margin: 0 auto;}
+#match-info { position: absolute; height: 100%; right: 100px; left: 15%; text-align: left; padding: 10px 2px; }
+#match-info > h3 { font-size: 18px; margin-bottom: 7px; }
+#match-info > p { font-size: 16px; }
+#match-percent { position: absolute; width: 100px; height: 100%; right: 0; background-color: rgba(0,0,0,0.1); border-left: 1px solid white; }
+#match-percent > div > p { font-size: 40px; color: white; }
 
 /*PROFILE: INFO*/
 #profile > #info { position: absolute; width: 100%; height: 200px; top: 100px; background-color: gray; }
@@ -71,9 +63,9 @@ div.personal-media { position: relative; height: auto; overflow: visible;}
 #profile> #info > #map > #personal-button {width: 30%; height: 100%; margin: 0 auto;}
 #profile > #info > #map {width: 30%; height: 100%; float: left;}
 
-
-/*PERSONAL: FEED*/
-#profile > #feed { position: absolute; width: 100%; height: 500px; top: 300px; background-color: gray; }
-
 /* PROFILE: FEED*/
-#profile-feed { position: absolute; background-color: white; height: 500px; width: 60%; left: 20%; right: 20%;  }
+#profile-feed { position: absolute; top: 300px; background-color: white; width: 100%; overflow: scroll; }
+div.profile-media { position: relative; height: auto; overflow: visible;}
+
+
+/*FF63BB*/
