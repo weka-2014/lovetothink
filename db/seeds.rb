@@ -4,21 +4,21 @@ User.destroy_all
 
 users = [
 	{twitter_username: "katyperry", youtube_username: "PewDieDie", soundcloud_username: "skrillex"},
-	{twitter_username: "justinbieber", youtube_username: "Smosh", soundcloud_username: "calvinharris"},
+	{twitter_username: "justinbieber", youtube_username: "Smosh", soundcloud_username: "computerjay"},
 	{twitter_username: "BarackObama", youtube_username: "judsonlaipply", soundcloud_username: "diplo"},
 	{twitter_username: "taylorswift13", youtube_username: "Brookers", soundcloud_username: "dillon-francis"},
 	{twitter_username: "ladygaga", youtube_username: "geriatric1927", soundcloud_username: "zeds-dead"},
 	{twitter_username: "britneyspears", youtube_username: "lonelygirl15", soundcloud_username: "a-trak"},
-	{twitter_username: "jtimberlake", youtube_username: "nigahiga", soundcloud_username: "flyinglotus"},
+	{twitter_username: "jtimberlake", youtube_username: "nigahiga", soundcloud_username: "dj-nobody"},
 	{twitter_username: "rihanna", youtube_username: "Fred", soundcloud_username: "flosstradamus"},
 	{twitter_username: "auria", youtube_username: "holasoygerman", soundcloud_username: "bondax"},
-	{twitter_username: "Cristano", youtube_username: "JennaMarbles", soundcloud_username: "rac-remix-artist-collective"},
-	{twitter_username: "JLo", youtube_username: "machinima", soundcloud_username: "zedd"},
+	{twitter_username: "Cristano", youtube_username: "JennaMarbles", soundcloud_username: "gypsy-mamba"},
+	{twitter_username: "JLo", youtube_username: "machinima", soundcloud_username: "eli-mattern"},
 	{twitter_username: "shakira", youtube_username: "ERB", soundcloud_username: "flux-pavilion"},
-	{twitter_username: "KimKardashian", youtube_username: "TheFineBros", soundcloud_username: "porter-robinson"},
+	{twitter_username: "KimKardashian", youtube_username: "TheFineBros", soundcloud_username: "know-wave"},
 	{twitter_username: "Oprah", youtube_username: "RayWilliamJohnson", soundcloud_username: "steveaoki"},
 	{twitter_username: "ddlovato", youtube_username: "skydoesminecraft", soundcloud_username: "noisia"},
-	{twitter_username: "Pink", youtube_username: "TheEllenShow", soundcloud_username: "krewella"},
+	{twitter_username: "Pink", youtube_username: "TheEllenShow", soundcloud_username: "le1f"},
 	{twitter_username: "selenagomez", youtube_username: "vanossgaming", soundcloud_username: "nickyromero"},
 	{twitter_username: "Randy_Gage", youtube_username: "portadosfundos", soundcloud_username: "modestep"},
 	{twitter_username: "Harry_Styles", youtube_username: "elrubiusOMG", soundcloud_username: "datsik"},
@@ -29,12 +29,12 @@ users = [
 	{twitter_username: "NiallOfficial", youtube_username: "TheSyndicateProject", soundcloud_username: "axwell"},
 	{twitter_username: "aliciakeys", youtube_username: "CaptainSparklez", soundcloud_username: "ingrosso"},
 	{twitter_username: "BrunoMars", youtube_username: "vsauce", soundcloud_username: "steveangello"},
-	{twitter_username: "LilTunechi", youtube_username: "RoosterTeeth", soundcloud_username: "iambenga"},
+	{twitter_username: "LilTunechi", youtube_username: "RoosterTeeth", soundcloud_username: "nguzunguzu"},
 	{twitter_username: "venelibertario", youtube_username: "ElektraRecords", soundcloud_username: "seven-lions"},
 	{twitter_username: "Eminem", youtube_username: "Macbarbie07", soundcloud_username: "majorlazer"},
 	{twitter_username: "MileyCyrus", youtube_username: "vegetta777", soundcloud_username: "daedelus"},
 	{twitter_username: "BillGates", youtube_username: "VitalyzdTv", soundcloud_username: "markprtchrd"},
-	{twitter_username: "pitbull", youtube_username: "ksiolajidebt", soundcloud_username: "dorian-concept"},
+	{twitter_username: "pitbull", youtube_username: "ksiolajidebt", soundcloud_username: "bokbok"},
 	{twitter_username: "Real_Liam_Payne", youtube_username: "officialpsy", soundcloud_username: "letherette"},
 	{twitter_username: "NICKIMINAJ", youtube_username: "SpinninRec", soundcloud_username: "jazzface"},
 	{twitter_username: "Louis_Tomlinson", youtube_username: "enchufetv", soundcloud_username: "joakimbouaziz"},
@@ -93,7 +93,7 @@ users = [
 ]
 
 users.each_with_index do |user,index|
-	User.create!(email: Faker::Internet.email, name: Faker::Name.name, blurb: Faker::Hacker.say_something_smart, image_url: "https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg", password: "password",twitter_username: user[:twitter_username], youtube_username: user[:youtube_username])
+	User.create!(email: Faker::Internet.email, name: Faker::Name.name, blurb: Faker::Hacker.say_something_smart, image_url: "https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg", password: "password",twitter_username: user[:twitter_username], youtube_username: user[:youtube_username], soundcloud_username: user[:soundcloud_username])
 	puts "#{index + 1} users loaded"
 end
 
@@ -103,4 +103,5 @@ User.all.each_with_index do |user,index|
 	puts "loading videos for user #{index + 1}"
 	user.load_videos
 	puts "loading tracks for user #{index + 1}"
+	user.load_tracks
 end
