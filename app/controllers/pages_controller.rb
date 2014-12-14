@@ -25,5 +25,8 @@ class PagesController < ApplicationController
 		@personal_info = user.personal_info
 	end
 
+	def chat
+	end
+
 end
 

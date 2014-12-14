@@ -3,7 +3,7 @@
   <div id="header">
     <h1> L2T </h1>
     <nav>
-      <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
+        <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
     </nav>
   </div>
 
@@ -17,19 +17,37 @@
       <div id="personal-box">
         <h3><%=@personal_info[:name]%></h3>
         <p><%=@personal_info[:blurb]%></p>
-        <div id="personal-button">
-          <input type="submit" name="inbox" value="inbox"/>
+        <div class="vertalign" id="personal-button">
+          <input type="submit" name="message" value="message"/>
         </div>
       </div>
     </div>
 
-    <div id="map"> 
+    <div id="map">
       <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg">
     </div>
-    
+
   </div>
 
+
   <div id="feed">
+    <div id="news">
+      <div id="profile-feed">
+          <h2>TWEETS</h2>
+          <% @personal_info[:tweets].each do |tweet|%>
+            <li><%=tweet.content%></li>
+          <% end %>
+      </div>
+      <div id="profile-feed">
+          <h2>VIDEOS</h2>
+          <% @personal_info[:videos].each do |video|%>
+            <li><a href='<%=video.url%>'><%=video.title%></a></li>
+          <% end %>
+      </div>
+    </div>
+
+
+  <!-- <div id="feed">
     <div id="profile-feed">
       <div id="profile-tweets">
         <h2>TWEETS</h2>
@@ -37,7 +55,7 @@
           <% @personal_info[:tweets].each do |tweet| %>
             <li><%= tweet.content %></li>
           <% end %>
-        </ul> 
+        </ul>
       </div>
       <div id="profile-videos">
         <h2>VIDEOS</h2>
@@ -48,7 +66,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div id="footer"></div>
 

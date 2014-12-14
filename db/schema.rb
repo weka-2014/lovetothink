@@ -16,12 +16,6 @@ ActiveRecord::Schema.define(version: 20141213034248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "customers", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "hashtags", force: true do |t|
     t.integer  "tweet_id"
     t.string   "text"
@@ -32,13 +26,6 @@ ActiveRecord::Schema.define(version: 20141213034248) do
   create_table "keywords", force: true do |t|
     t.integer  "video_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "notes", force: true do |t|
-    t.integer  "customer_id"
-    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
