@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def load_tracks
+  #   tracks.destroy_all
+  #   track_data = SOUNDCLOUD.get()
+
+  # end
+
   def personal_info
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos}
   end
