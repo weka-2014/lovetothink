@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def load_tweets
     tweets.destroy_all
-  	tweet_data = TWITTER.user_timeline(twitter_username)
+  	tweet_data = TWITTER.user_timeline(twitter_username, :count => 10)
   	tweet_data.each do |tweet_object|
   		tweet = tweets.create(content: tweet_object.text)
   		tweet_object.hashtags.each do |hashtag_object|
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   def load_videos
     videos.destroy_all
     activity = YOUTUBE.activity(youtube_username)
-    video_ids = activity.map { |action| action.video_id }
+    video_ids = activity.first(10).map { |action| action.video_id }
     video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
     video_data.each do |video_object|
       url = video_object.player_url 
@@ -40,11 +40,33 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def load_tracks
-  #   tracks.destroy_all
-  #   track_data = SOUNDCLOUD.get()
+  def load_tracks
+    tracks.destroy_all
+    track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 10)
+    track_data.each do |track_object|
+      image_url = track_object.artwork_url
+      description = track_object.description
+      genre = track_object.genre 
+      title = track_object.title
+      track_url = track_object.permalink_url
+      author = track_object.user.username
+      
+      tag_string = track_object.tag_list
+      strings = tag_string.scan(/["][^"]+["]/)
+      strings.each do |string|
+        tag_string.gsub!(string,"")
+        string.gsub!("\"","")
+      end
+      words = tag_string.split(" ")
+      tag_array = words.concat(strings)
 
-  # end
+      track = tracks.create(image_url: image_url, description: description, genre: genre, track_url: track_url, title: title, author: author)
+      tag_array.each do |tag|
+        track.tags.create(name: tag)
+      end
+    end
+
+  end
 
   def personal_info
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos}
