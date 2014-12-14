@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def personal_info
-  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos}
+  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos, tracks: tracks}
   end
 
   def self.data(current_user)
@@ -132,8 +132,9 @@ class User < ActiveRecord::Base
   	data = User.where.not(id: current_user.id).map do |user|
       twitter_percent = rand(0.0..1.0)
       youtube_percent = rand(0.0..1.0)
-      overall_percent = (twitter_percent + youtube_percent) / 2.0
-  		{"user_id" => user.id, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "overall_percent" => overall_percent}
+      soundcloud_percent = rand(0.0..1.0)
+      overall_percent = (twitter_percent + youtube_percent + soundcloud_percent) / 3.0
+  		{"user_id" => user.id, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "soundcloud_percent" => soundcloud_percent, "overall_percent" => overall_percent}
   	end
   	data = data.sort_by { |k| p k["overall_percent"] }.reverse
 	end
@@ -143,9 +144,10 @@ class User < ActiveRecord::Base
   		user_id = match["user_id"]
       twitter_percent = "#{(match["twitter_percent"]*100).to_i}%"
       youtube_percent = "#{(match["youtube_percent"]*100).to_i}%"
+      soundcloud_percent = "#{(match["soundcloud_percent"]*100).to_i}%"
       overall_percent = "#{(match["overall_percent"]*100).to_i}%"
  			user = User.find(user_id)
-  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "overall_percent" => overall_percent }
+  		{"id" => user.id, "name" => user.name, "blurb" => user.blurb, "image_url" => user.image_url, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "soundcloud_percent" => soundcloud_percent, "overall_percent" => overall_percent }
   	end
   end
 

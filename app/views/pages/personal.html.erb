@@ -44,6 +44,12 @@
             <li id="li-padding"><a href='<%=video.url%>'><%=video.title%></a></li>
           <% end %>
       </div>
+      <div class="personal-media">
+          <h2>TRACKS</h2>
+          <% @personal_info[:tracks].each do |track|%>
+            <li id="li-padding"><a href='<%=track.track_url%>'><%=track.title%></a></li>
+          <% end %>
+      </div>
     </div>
 
     <div id="matches">
@@ -61,7 +67,10 @@
               <p><%=match["blurb"]%></p>
             </div>
             <div id="match-percent">
+              <p><%=match["overall_percent"]%></p>
               <p><%=match["twitter_percent"]%></p>
+              <p><%=match["youtube_percent"]%></p>
+              <p><%=match["soundcloud_percent"]%></p>
             </div>
           </li>
         <% end %>
