@@ -40,23 +40,23 @@ lovetothink
 				}
 			],
 			"videos" => [
-					{
-						"url" => "http://www.youtube.com/watch?v=OPEEPEE&feature=youtube_gdata_player",
-						"title" => "what is life video",
-						"description" => "more shit answers to impossible questions",
-						"label" => "Philosophy",
-						"author" => "ThinkingBeard",
-						"keywords" => ["answers","jk"]
-					},
-					{
-						"url" => "http://www.youtube.com/watch?v=OHOTDOGfs0xF&feature=youtube_gdata_player",
-						"title" => "Twenty Cats Chasing Lasers",
-						"description" => "CLIMAXINGCLIMAXINGCLIMAXINGCLIMAXINGCLIMAXING",
-						"label" => "Health",
-						"author" => "CatDad",
-						"keywords" => ["CLIMAXING"]
-					}
-				]
+				{
+					"url" => "http://www.youtube.com/watch?v=OPEEPEE&feature=youtube_gdata_player",
+					"title" => "what is life video",
+					"description" => "more shit answers to impossible questions",
+					"label" => "Philosophy",
+					"author" => "ThinkingBeard",
+					"keywords" => ["answers","jk"]
+				},
+				{
+					"url" => "http://www.youtube.com/watch?v=OHOTDOGfs0xF&feature=youtube_gdata_player",
+					"title" => "Twenty Cats Chasing Lasers",
+					"description" => "CLIMAXINGCLIMAXINGCLIMAXINGCLIMAXINGCLIMAXING",
+					"label" => "Health",
+					"author" => "CatDad",
+					"keywords" => ["CLIMAXING"]
+				}
+			]
 		},
 	
 		"matches" => [ 
