@@ -65,11 +65,10 @@ class User < ActiveRecord::Base
         track.tags.create(name: tag)
       end
     end
-
   end
 
   def personal_info
-  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets, videos: videos, tracks: tracks}
+  	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets.first(5), videos: videos.first(5), tracks: tracks.first(5)}
   end
 
   def self.data(current_user)
