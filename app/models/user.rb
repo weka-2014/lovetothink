@@ -88,29 +88,39 @@ class User < ActiveRecord::Base
       {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
     end
 
-  	current_user_data = {"user_id" => current_user.id, "tweets" => current_user_tweet_data, "videos" => current_user_video_data}
+    current_user_track_data = current_user.tracks.map do |track|
+      tags = track.tags.map do |tag|
+        tag.name
+      end
+      {"title" => track.title, "author" => track.author, "description" => track.description, "genre" => track.genre, "track_url" => track.track_url, "image_url" => track.image_url, "tags" => tags}
+    end
+
+  	current_user_data = {"user_id" => current_user.id, "tweets" => current_user_tweet_data, "videos" => current_user_video_data, "tracks" => current_user_track_data}
 
   	match_data = User.where.not(id: current_user.id).map do |user|
 
-      unless user.id == current_user.id  
+  		user_tweet_data = user.tweets.map do |tweet|
+  			hashtags = tweet.hashtags.map do |hashtag|
+  				hashtag.text
+  			end
+  			{"content" => tweet.content, "hashtags" => hashtags}
+  		end
 
-    		user_tweet_data = user.tweets.map do |tweet|
-    			hashtags = tweet.hashtags.map do |hashtag|
-    				hashtag.text
-    			end
-    			{"content" => tweet.content, "hashtags" => hashtags}
-    		end
-
-        user_video_data = user.videos.map do |video|
-          keywords = video.keywords.map do |keyword|
-            keyword.name
-          end
-          {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
+      user_video_data = user.videos.map do |video|
+        keywords = video.keywords.map do |keyword|
+          keyword.name
         end
-
-    		{"user_id" => user.id, "tweets" => user_tweet_data, "videos" => user_video_data}
-
+        {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author, "keywords" => keywords}
       end
+
+      user_track_data = user.tracks.map do |track| 
+        tags = track.tags.map do |tag|
+          tag.name
+        end
+        {"title" => track.title, "author" => track.author, "description" => track.description, "genre" => track.genre, "track_url" => track.track_url, "image_url" => track.image_url, "tags" => tags}
+      end
+
+  		{"user_id" => user.id, "tweets" => user_tweet_data, "videos" => user_video_data, "tracks" => user_track_data}
 
   	end
 
