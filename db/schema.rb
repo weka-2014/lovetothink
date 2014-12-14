@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213034248) do
+ActiveRecord::Schema.define(version: 20141214041342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,32 @@ ActiveRecord::Schema.define(version: 20141213034248) do
     t.datetime "updated_at"
   end
 
+  create_table "notes", force: true do |t|
+    t.integer  "customer_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.integer  "track_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracks", force: true do |t|
+    t.integer  "user_id"
+    t.string   "image_url"
+    t.text     "description"
+    t.string   "genre"
+    t.string   "track_url"
+    t.string   "title"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tweets", force: true do |t|
     t.integer  "user_id"
     t.string   "content"
@@ -38,8 +64,8 @@ ActiveRecord::Schema.define(version: 20141213034248) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",              default: "", null: false
-    t.string   "encrypted_password", default: "", null: false
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "twitter_username"
@@ -47,6 +73,7 @@ ActiveRecord::Schema.define(version: 20141213034248) do
     t.text     "blurb"
     t.string   "image_url"
     t.string   "youtube_username"
+    t.string   "soundcloud_username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
