@@ -14,9 +14,7 @@
     </div>
 
     <div id="about">
-      <div id="personal-button" class="vertalign">
-          <input type="submit" name="inbox" value="inbox"/>
-        </div>
+      <%= link_to 'INBOX', '/conversations' %>
       <div id="personal-box">
         <h3><%=@personal_info[:name]%></h3>
         <p><%=@personal_info[:blurb]%></p>
