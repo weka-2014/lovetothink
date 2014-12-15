@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :tweets, dependent: :destroy
   has_many :videos, dependent: :destroy
   has_many :tracks, dependent: :destroy
+  has_many :matches, dependent: :destroy
 
   after_create do
     validate_twitter_username
@@ -125,6 +126,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def load_match_data(raw_match_data)
+    matches.destroy_all
+    raw_match_data.each do |match|
+      matches.create(match_user_id: match["user_id"], twitter_percent: match["twitter_percent"], youtube_percent: match["youtube_percent"], soundcloud_percent: match["soundcloud_percent"], overall_percent: match["overall_percent"])
+    end
+  end
+
+  def match_data_formatted
+    matches.order(overall_percent: :desc).map do |match|
+      match.formatted
+    end
+  end
+
   def personal_info
   	{user_id: id, name: name, blurb: blurb, image_url: image_url, tweets: tweets.first(5), videos: videos.first(5), tracks: tracks.first(5)}
   end
@@ -180,18 +194,17 @@ class User < ActiveRecord::Base
   end
 
   def self.drunk_tye_matcher(current_user)
-  	data = User.where.not(id: current_user.id).map do |user|
+    User.where.not(id: current_user.id).map do |user|
       twitter_percent = rand(0.0..1.0)
       youtube_percent = rand(0.0..1.0)
       soundcloud_percent = rand(0.0..1.0)
       overall_percent = (twitter_percent + youtube_percent + soundcloud_percent) / 3.0
   		{"user_id" => user.id, "twitter_percent" => twitter_percent, "youtube_percent" => youtube_percent, "soundcloud_percent" => soundcloud_percent, "overall_percent" => overall_percent}
   	end
-  	data = data.sort_by { |k| p k["overall_percent"] }.reverse
 	end
 
-  def self.drunk_tye_processor(match_data)
-  	match_data.map do |match|
+  def self.drunk_tye_processor(raw_match_data)
+  	raw_match_data.map do |match|
   		user_id = match["user_id"]
       twitter_percent = "#{(match["twitter_percent"]*100).to_i}%"
       youtube_percent = "#{(match["youtube_percent"]*100).to_i}%"

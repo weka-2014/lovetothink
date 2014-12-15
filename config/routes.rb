@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get '/', to: 'pages#home'
   get '/personal', to: 'pages#personal'
   get '/users/update_info', to: 'users#update_info'
+  get '/users/update_matches', to: 'users#update_matches'
   get '/profile/:id', to: 'pages#profile'
-  get '/chat', to: 'pages#chat'
 
   get '/conversations', to: 'conversations#index'
   get '/conversations/:id', to: 'conversations#show'
