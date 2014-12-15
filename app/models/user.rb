@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     validate_twitter_username
     validate_twitter_username
     validate_twitter_username
+    load_profile_img
   end
 
   def validate_twitter_username
@@ -45,11 +46,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def load_profile_img
+    case 
+      when twitter_username != "" then self.update(image_url: TWITTER.user(twitter_username).attrs[:profile_image_url_https])
+      when youtube_username != "" then self.update(image_url: YOUTUBE.profile(youtube_username).avatar)
+      when soundcloud_username != "" then self.update(image_url: SOUNDCLOUD.get("/users/#{soundcloud_username}"))
+      else self.update(image_url: "https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg")
+    end
+  end
+
   def load_tweets
+    tweets.destroy_all
     unless twitter_username.empty? 
-      tweets.destroy_all
     	tweet_data = TWITTER.user_timeline(twitter_username, :count => 5)
-      self.update(image_url: TWITTER.user(twitter_username).attrs[:profile_image_url_https])
     	tweet_data.each do |tweet_object|
     		tweet = tweets.create(content: tweet_object.text)
     		tweet_object.hashtags.each do |hashtag_object|
@@ -62,8 +71,8 @@ class User < ActiveRecord::Base
   end
 
   def load_videos
+    videos.destroy_all
     unless youtube_username.empty?
-      videos.destroy_all
       activity = YOUTUBE.activity(youtube_username)
       video_ids = activity.first(5).map { |action| action.video_id }
       video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
@@ -79,8 +88,8 @@ class User < ActiveRecord::Base
   end
 
   def load_tracks
+    tracks.destroy_all
     unless soundcloud_username.empty?
-      tracks.destroy_all
       track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 5)
       track_data.each do |track_object|
         image_url = track_object.artwork_url
