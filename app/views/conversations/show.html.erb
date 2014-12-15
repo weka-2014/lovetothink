@@ -1,0 +1,8 @@
+<h1>CONVERSATION BETWEEN <%=@users[:sender].name%> AND <%=@users[:recipient].name%></h1>
+
+<% @messages.each do |message| %>
+	<li>
+		<h2><%=message[:sender].name%></h2>
+		<p><%=message[:content]%></p>
+	</li>
+<% end %>
