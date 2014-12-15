@@ -70,38 +70,35 @@ users = [
 	{twitter_username: "SnoopDogg", youtube_username: "FPSRussia", soundcloud_username: "n_u_t_s"},
 	{twitter_username: "0xF2", youtube_username: "NormanFaitDesVideos", soundcloud_username: "kitrecords"},
 	{twitter_username: "khloekardashian", youtube_username: "IGNentertainment", soundcloud_username: "digitaltsunami"},
-	{twitter_username: "LeoDiCaprio", youtube_username: "vice", soundcloud_username: "delsinrecords"},
-	{twitter_username: "ivetesangalo", youtube_username: "latenight", soundcloud_username: "conforce"},
-	{twitter_username: "charliesheen", youtube_username: "BFvsGF", soundcloud_username: "photophobia-symptoms"},
-	{twitter_username: "edsheeran", youtube_username: "Matroix", soundcloud_username: "melina-kal-i"},
-	{twitter_username: "ricky_martin", youtube_username: "SteveKardynal", soundcloud_username: "energeia-matter"},
-	{twitter_username: "10Ronaldinho", youtube_username: "JimmyKimmelLive", soundcloud_username: "telo-suite"},
-	{twitter_username: "kanyewest", youtube_username: "SeaNanners", soundcloud_username: "minimalismos"},
-	{twitter_username: "SimonCowell", youtube_username: "RomanAtwood", soundcloud_username: "djadnan"},
-	{twitter_username: "carlyraejepsen", youtube_username: "KurtHugoSchneider", soundcloud_username: "lovercio"},
-	{twitter_username: "novaspivack", youtube_username: "rhettandlink2", soundcloud_username: "sibegg"},
-	{twitter_username: "MohamadAlarefe", youtube_username: "theslowmoguys", soundcloud_username: "radiomovies"},
-	{twitter_username: "iamsrk", youtube_username: "BartBaKer", soundcloud_username: "dan-goodwin-6"},
-	{twitter_username: "WayneRooney", youtube_username: "ThisIsHorosho", soundcloud_username: "aaronbelay"},
-	{twitter_username: "iamdiddy", youtube_username: "DisneyCollectorBR", soundcloud_username: "ronemusic"},
-	{twitter_username: "andresiniesta8", youtube_username: "getmovies", soundcloud_username: "raw-life"},
-	{twitter_username: "aamir_khan", youtube_username: "blucollection", soundcloud_username: "eightyocho"},
-	{twitter_username: "ClaudiaLeitte", youtube_username: "DisneyCarToys", soundcloud_username: "your-old-droog"},
-	{twitter_username: "Usher", youtube_username: "MashaMedvedTV", soundcloud_username: "knxwledge"},
-	{twitter_username: "ZacEfron", youtube_username: "buzzfeedyellow", soundcloud_username: "littlesimz"},
-	{twitter_username: "gqindia", youtube_username: "SurpriseToys", soundcloud_username: "joshxarce"}
+	{twitter_username: "LeoDiCaprio", youtube_username: "vice", soundcloud_username: "delsinrecords"}
+	# {twitter_username: "ivetesangalo", youtube_username: "latenight", soundcloud_username: "conforce"},
+	# {twitter_username: "charliesheen", youtube_username: "BFvsGF", soundcloud_username: "photophobia-symptoms"},
+	# {twitter_username: "edsheeran", youtube_username: "Matroix", soundcloud_username: "melina-kal-i"},
+	# {twitter_username: "ricky_martin", youtube_username: "SteveKardynal", soundcloud_username: "energeia-matter"},
+	# {twitter_username: "10Ronaldinho", youtube_username: "JimmyKimmelLive", soundcloud_username: "telo-suite"},
+	# {twitter_username: "kanyewest", youtube_username: "SeaNanners", soundcloud_username: "minimalismos"},
+	# {twitter_username: "SimonCowell", youtube_username: "RomanAtwood", soundcloud_username: "djadnan"},
+	# {twitter_username: "carlyraejepsen", youtube_username: "KurtHugoSchneider", soundcloud_username: "lovercio"},
+	# {twitter_username: "novaspivack", youtube_username: "rhettandlink2", soundcloud_username: "sibegg"},
+	# {twitter_username: "MohamadAlarefe", youtube_username: "theslowmoguys", soundcloud_username: "radiomovies"},
+	# {twitter_username: "iamsrk", youtube_username: "BartBaKer", soundcloud_username: "dan-goodwin-6"},
+	# {twitter_username: "WayneRooney", youtube_username: "ThisIsHorosho", soundcloud_username: "aaronbelay"},
+	# {twitter_username: "iamdiddy", youtube_username: "DisneyCollectorBR", soundcloud_username: "ronemusic"},
+	# {twitter_username: "andresiniesta8", youtube_username: "getmovies", soundcloud_username: "raw-life"},
+	# {twitter_username: "aamir_khan", youtube_username: "blucollection", soundcloud_username: "eightyocho"},
+	# {twitter_username: "ClaudiaLeitte", youtube_username: "DisneyCarToys", soundcloud_username: "your-old-droog"},
+	# {twitter_username: "Usher", youtube_username: "MashaMedvedTV", soundcloud_username: "knxwledge"},
+	# {twitter_username: "ZacEfron", youtube_username: "buzzfeedyellow", soundcloud_username: "littlesimz"},
+	# {twitter_username: "gqindia", youtube_username: "SurpriseToys", soundcloud_username: "joshxarce"}
 ]
 
 users.each_with_index do |user,index|
-	User.create!(email: Faker::Internet.email, name: Faker::Name.name, blurb: Faker::Hacker.say_something_smart, image_url: "https://pbs.twimg.com/profile_images/3253620646/8031eb423b8d91cca462af4825cdfdb2.jpeg", password: "password",twitter_username: user[:twitter_username], youtube_username: user[:youtube_username], soundcloud_username: user[:soundcloud_username])
-	puts "#{index + 1} users loaded"
-end
-
-User.all.each_with_index do |user,index|
-	puts "loading tweets for user #{index + 1}"
-	user.load_tweets
-	puts "loading videos for user #{index + 1}"
-	user.load_videos
-	puts "loading tracks for user #{index + 1}"
-	user.load_tracks
+	new_user = User.create!(email: Faker::Internet.email, name: Faker::Name.name, blurb: Faker::Hacker.say_something_smart, password: "password",twitter_username: user[:twitter_username], youtube_username: user[:youtube_username], soundcloud_username: user[:soundcloud_username])
+	puts "loaded user #{index + 1}"
+	new_user.load_tweets
+	puts "loaded tweets for user #{index + 1}"
+	new_user.load_videos
+	puts "loaded videos for user #{index + 1}"
+	new_user.load_tracks
+	puts "loaded tracks for user #{index + 1}"
 end
