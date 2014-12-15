@@ -1,65 +1,108 @@
 class User < ActiveRecord::Base
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  #  :trackable, :rememberable, :recoverable,
   devise :database_authenticatable, :registerable, :validatable
 
   has_many :tweets, dependent: :destroy
   has_many :videos, dependent: :destroy
   has_many :tracks, dependent: :destroy
 
+  after_create do
+    validate_twitter_username
+    validate_twitter_username
+    validate_twitter_username
+  end
+
+  def validate_twitter_username
+    begin
+      TWITTER.user(twitter_username)
+    rescue
+      self.update(twitter_username: nil)
+      false
+    else
+      true
+    end
+  end
+
+  def validate_youtube_username
+    begin
+      YOUTUBE.user(youtube_username)
+    rescue
+      self.update(youtube_username: nil)
+      false
+    else
+      true
+    end
+  end
+
+  def validate_soundcloud_username
+    begin
+      SOUNDCLOUD.user(soundcloud_username)
+    rescue
+      self.update(soundcloud_username: nil)
+      false
+    else
+      true
+    end
+  end
+
   def load_tweets
-    tweets.destroy_all
-  	tweet_data = TWITTER.user_timeline(twitter_username, :count => 5)
-  	tweet_data.each do |tweet_object|
-  		tweet = tweets.create(content: tweet_object.text)
-  		tweet_object.hashtags.each do |hashtag_object|
-  			if hashtag_object.text
-	  			tweet.hashtags.create(text: hashtag_object.text)
-	  		end
-  		end
-  	end
+    unless twitter_username.empty? 
+      tweets.destroy_all
+    	tweet_data = TWITTER.user_timeline(twitter_username, :count => 5)
+      self.update(image_url: TWITTER.user(twitter_username).attrs[:profile_image_url_https])
+    	tweet_data.each do |tweet_object|
+    		tweet = tweets.create(content: tweet_object.text)
+    		tweet_object.hashtags.each do |hashtag_object|
+    			if hashtag_object.text
+  	  			tweet.hashtags.create(text: hashtag_object.text)
+  	  		end
+    		end
+    	end
+    end
   end
 
   def load_videos
-    videos.destroy_all
-    activity = YOUTUBE.activity(youtube_username)
-    video_ids = activity.first(5).map { |action| action.video_id }
-    video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
-    video_data.each do |video_object|
-      url = video_object.player_url 
-      title = video_object.title
-      description = video_object.description
-      label = video_object.categories.map { |category| category.label }.first
-      author = video_object.author.name
-      video = videos.create(url: url, title: title, description: description, label: label, author: author)
+    unless youtube_username.empty?
+      videos.destroy_all
+      activity = YOUTUBE.activity(youtube_username)
+      video_ids = activity.first(5).map { |action| action.video_id }
+      video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
+      video_data.each do |video_object|
+        url = video_object.player_url 
+        title = video_object.title
+        description = video_object.description
+        label = video_object.categories.map { |category| category.label }.first
+        author = video_object.author.name
+        video = videos.create(url: url, title: title, description: description, label: label, author: author)
+      end
     end
   end
 
   def load_tracks
-    tracks.destroy_all
-    track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 5)
-    track_data.each do |track_object|
-      image_url = track_object.artwork_url
-      description = track_object.description
-      genre = track_object.genre 
-      title = track_object.title
-      track_url = track_object.permalink_url
-      author = track_object.user.username
-      
-      tag_string = track_object.tag_list
-      strings = tag_string.scan(/["][^"]+["]/)
-      strings.each do |string|
-        tag_string.gsub!(string,"")
-        string.gsub!("\"","")
-      end
-      words = tag_string.split(" ")
-      tag_array = words.concat(strings)
+    unless soundcloud_username.empty?
+      tracks.destroy_all
+      track_data = SOUNDCLOUD.get("/users/#{soundcloud_username}/favorites", :limit => 5)
+      track_data.each do |track_object|
+        image_url = track_object.artwork_url
+        description = track_object.description
+        genre = track_object.genre 
+        title = track_object.title
+        track_url = track_object.permalink_url
+        author = track_object.user.username
+        
+        tag_string = track_object.tag_list
+        strings = tag_string.scan(/["][^"]+["]/)
+        strings.each do |string|
+          tag_string.gsub!(string,"")
+          string.gsub!("\"","")
+        end
+        words = tag_string.split(" ")
+        tag_array = words.concat(strings)
 
-      track = tracks.create(image_url: image_url, description: description, genre: genre, track_url: track_url, title: title, author: author)
-      tag_array.first(5).each do |tag|
-        track.tags.create(name: tag)
+        track = tracks.create(image_url: image_url, description: description, genre: genre, track_url: track_url, title: title, author: author)
+        tag_array.first(5).each do |tag|
+          track.tags.create(name: tag)
+        end
       end
     end
   end
