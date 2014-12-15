@@ -54,11 +54,3 @@ gem 'soundcloud', '~> 0.3.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-group :test, :development do
-  gem 'simplecov', require: false # No tests!!! O% coverage!!! You know and can do better than this!
-  gem "rails_best_practices" # Run with `rails_best_practices`
-  gem "reek" # Run with `reek app`
-  gem "flog" # Run with `flog app`
-  gem "sandi_meter" # Run with `sandi_meter app`
-end
