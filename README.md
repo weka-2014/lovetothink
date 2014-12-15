@@ -27,156 +27,115 @@ lovetothink
   ii. controller takes that array, and fetches the last, let's say, 50 tweets from each person, and arranges that shit into a json hash. That hash is sent to the matcher via HTTPARTY.
 	```ruby
 	{
-      "user" => {
-          "user_id" => 1,
-          "tweets" => [
-              {
-                  "content" => "oooooooo wooooowwww hehehe"
-                  "hashtags" => ["LSD","wutislife"]
-              },
-              {
-                  "content" => "i am a fruit"
-                  "hashtags" => ["stillLSD","IAMYEEZUS"]
-              }
-          ],
-          "videos" => [
-              {
-                  "url" => "http://www.youtube.com/watch?v=OPEEPEE&feature=youtube_gdata_player",
-                  "title" => "what is life video",
-                  "description" => "more shit answers to impossible questions",
-                  "label" => "Philosophy",
-                  "author" => "ThinkingBeard",
-                  "keywords" => ["answers","jk"]
-              },
-              {
-                  "url" => "http://www.youtube.com/watch?v=OHOTDOGfs0xF&feature=youtube_gdata_player",
-                  "title" => "Twenty Cats Chasing Lasers",
-                  "description" => "CLIMAXINGCLIMAXINGCLIMAXINGCLIMAXINGCLIMAXING",
-                  "label" => "Health",
-                  "author" => "CatDad",
-                  "keywords" => ["CLIMAXING"]
-              }
-          ],
-          "tracks" => [
+    "user" => {
+        "user_id" => 1,
+        "tweets" => [
             {
-              "title" => "CatSounds",
-              "author" => "PerfectlyNormalGrandpa",
-              "description" => "Heaven...",
-              "genre" => "Ambient",
-              "track_url" => "https://soundcloud.com/PerfectlyNormalGrandpa/CatSounds",
-              "image_url" => "https://i1.sndcdn.com/artworks-000083178252-y7y0y9-large.jpg",
-              "tags" => ["idk","sarah"]
+                "content" => "oooooooo wooooowwww hehehe",
+                "hashtags" => ["LSD","wutislife"]
             },
+            {
+                "content" => "i am a fruit",
+                "hashtags" => ["stillLSD","IAMYEEZUS"]
+            }
+        ],
+        "videos" => [
+            {
+                "url" => "http://www.youtube.com/watch?v=OPEEPEE&feature=youtube_gdata_player",
+                "title" => "what is life video",
+                "description" => "more shit answers to impossible questions",
+                "label" => "Philosophy",
+                "author" => "ThinkingBeard",
+                "keywords" => ["answers","jk"]
+            },
+            {
+                "url" => "http://www.youtube.com/watch?v=OHOTDOGfs0xF&feature=youtube_gdata_player",
+                "title" => "Twenty Cats Chasing Lasers",
+                "description" => "CLIMAXINGCLIMAXINGCLIMAXINGCLIMAXINGCLIMAXING",
+                "label" => "Health",
+                "author" => "CatDad",
+                "keywords" => ["CLIMAXING"]
+            }
+        ]
 
-            ...
-            
-          ]
-      },
+    },
 
-      "matches" => [ 
-          { 
-              "user_id" => 2,
-              "tweets" => [
-                  { 
-                      "content" => "blah blah blah blah",
-                      "hashtags" => ["this", "that"]
-                  },
-                  { 
-                      "content" => "this is a tweet",
-                      "hashtags" => ["hashtag", "meow"]
-                  },
-                  { 
-                      "content" => "lorem ipsum",
-                      "hashtags" => ["pitter", "patter"]
-                  }
-              ],
-              "videos" => [
-                  {
-                      "url" => "http://www.youtube.com/watch?v=OeuGrBs0xFk&feature=youtube_gdata_player",
-                      "title" => "Kitty Kat Videos",
-                      "description" => "HAIL SATAN HAIL SATAN",
-                      "label" => "Entertainment",
-                      "author" => "JoshWoshTosh666",
-                      "keywords" => ["slipknot","iowa","fuckall"]
-                  },
-                  {
-                      "url" => "http://www.youtube.com/watch?v=OeuGrBsfs0xF&feature=youtube_gdata_player",
-                      "title" => "DEATH GRIPS NEW ALBUM",
-                      "description" => "listen to my opinion for fucking 20 minutes. I am an expert, and I am loud.",
-                      "label" => "Music",
-                      "author" => "LoudFuckingPerson",
-                      "keywords" => ["deathgrips"]
-                  },
-              ],
-              "tracks" => [
-                  {
-                    "title" => "CatSounds",
-                    "author" => "PerfectlyNormalGrandpa",
-                    "description" => "Heaven...",
-                    "genre" => "Ambient",
-                    "track_url" => "https://soundcloud.com/PerfectlyNormalGrandpa/CatSounds",
-                    "image_url" => "https://i1.sndcdn.com/artworks-000083178252-y7y0y9-large.jpg",
-                    "tags" => ["idk","sarah"]
-                  },
+    "matches" => [ 
+        { 
+            "user_id" => 2,
+            "tweets" => [
+                { 
+                    "content" => "blah blah blah blah",
+                    "hashtags" => ["this", "that"]
+                },
+                { 
+                    "content" => "this is a tweet",
+                    "hashtags" => ["hashtag", "meow"]
+                },
+                { 
+                    "content" => "lorem ipsum",
+                    "hashtags" => ["pitter", "patter"]
+                }
+            ],
+            "videos" => [
+                {
+                    "url" => "http://www.youtube.com/watch?v=OeuGrBs0xFk&feature=youtube_gdata_player",
+                    "title" => "Kitty Kat Videos",
+                    "description" => "HAIL SATAN HAIL SATAN",
+                    "label" => "Entertainment",
+                    "author" => "JoshWoshTosh666",
+                    "keywords" => ["slipknot","iowa","fuckall"]
+                },
+                {
+                    "url" => "http://www.youtube.com/watch?v=OeuGrBsfs0xF&feature=youtube_gdata_player",
+                    "title" => "DEATH GRIPS NEW ALBUM",
+                    "description" => "listen to my opinion for fucking 20 minutes. I am an expert, and I am loud.",
+                    "label" => "Music",
+                    "author" => "LoudFuckingPerson",
+                    "keywords" => ["deathgrips"]
+                }
+            ]
 
-                  ...
-                
-              ]
-          },
-              "user_id" => 3,
-              "tweets" => [
-                  { 
-                      "content" => "this is some text",
-                      "hashtags" => ["idk", "tweet"]
-                  },
-                  { 
-                      "content" => "my tweets are understimulating",
-                      "hashtags" => ["fuckeverything", "bluepens"]
-                  },
-                  { 
-                      "content" => "party party party",
-                      "hashtags" => ["seaworld", "savewhales"]
-                  }
-              ],
-              "videos" => [
-                  {
-                      "url" => "http://www.youtube.com/watch?v=Oezzzzzzs0xzk&feature=youtube_gdata_player",
-                      "title" => "Jokes",
-                      "description" => "60 Jokes in 60 seconds",
-                      "label" => "Inspirational",
-                      "author" => "SillyKevKev",
-                      "keywords" => ["premium","stolichnaya"]
-                  },
-                  {
-                      "url" => "http://www.youtube.com/watch?v=3333333333&feature=youtube_gdata_player",
-                      "title" => "BREAKING NEWS: FOXES ARE NOT A DOG",
-                      "description" => "Our team of biologists have determined that foxes are not a dog. They also do not know what a fox is. Breaking news...",
-                      "label" => "Science",
-                      "author" => "CNN",
-                      "keywords" => ["BIGFONTS","CHARMSCHOOL"]
-                  }
-              ],
-              "tracks" => [
-                  {
-                    "title" => "CatSounds",
-                    "author" => "PerfectlyNormalGrandpa",
-                    "description" => "Heaven...",
-                    "genre" => "Ambient",
-                    "track_url" => "https://soundcloud.com/PerfectlyNormalGrandpa/CatSounds",
-                    "image_url" => "https://i1.sndcdn.com/artworks-000083178252-y7y0y9-large.jpg",
-                    "tags" => ["idk","sarah"]
-                  },
+        },
+        {
+            "user_id" => 3,
+            "tweets" => [
+                { 
+                    "content" => "this is some text",
+                    "hashtags" => ["idk", "tweet"]
+                },
+                { 
+                    "content" => "my tweets are understimulating",
+                    "hashtags" => ["fuckeverything", "bluepens"]
+                },
+                { 
+                    "content" => "party party party",
+                    "hashtags" => ["seaworld", "savewhales"]
+                }
+            ],
+            "videos" => [
+                {
+                    "url" => "http://www.youtube.com/watch?v=Oezzzzzzs0xzk&feature=youtube_gdata_player",
+                    "title" => "Jokes",
+                    "description" => "60 Jokes in 60 seconds",
+                    "label" => "Inspirational",
+                    "author" => "SillyKevKev",
+                    "keywords" => ["premium","stolichnaya"]
+                },
+                {
+                    "url" => "http://www.youtube.com/watch?v=3333333333&feature=youtube_gdata_player",
+                    "title" => "BREAKING NEWS: FOXES ARE NOT A DOG",
+                    "description" => "Our team of biologists have determined that foxes are not a dog. They also do not know what a fox is. Breaking news...",
+                    "label" => "Science",
+                    "author" => "CNN",
+                    "keywords" => ["BIGFONTS","CHARMSCHOOL"]
+                }
+            ]
 
-                  ...
-                
-              ]
-          },
+        }
 
-          ...
-
-      ]
-  }
-
+    ]
+	}
 	```
 	iii. using httparty, the controller will receive the matcher's response, which will be of the following format:
 	```ruby 
