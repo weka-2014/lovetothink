@@ -1,4 +1,4 @@
 class Tweet < ActiveRecord::Base
-	has_many :hashtags
+	has_many :hashtags, dependent: :destroy
 
 end

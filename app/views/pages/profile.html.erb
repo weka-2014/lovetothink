@@ -1,7 +1,7 @@
 <body id="profile">
 
   <div id="header">
-    <h1> L2T </h1>
+    <h1><%= link_to 'L2T', '/' %></h1>
     <nav>
         <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
     </nav>
@@ -30,24 +30,32 @@
   </div>
 
   <div id="profile-feed">
-    <div class="profile-media">
-        <h2>TWEETS</h2>
-        <% @personal_info[:tweets].each do |tweet|%>
-          <li><%=tweet.content%></li>
-        <% end %>
-    </div>
-    <div class="profile-media">
-        <h2>VIDEOS</h2>
-        <% @personal_info[:videos].each do |video|%>
-          <li><a href='<%=video.url%>'><%=video.title%></a></li>
-        <% end %>
-    </div>
-    <div class="profile-media">
-        <h2>TRACKS</h2>
-        <% @personal_info[:tracks].each do |track|%>
-          <li><a href='<%=track.track_url%>'><%=track.title%></a></li>
-        <% end %>
-    </div>
+    <% unless @personal_info[:tweets].empty? %>
+      <div class="personal-media">
+          <h2>TWEETS</h2>
+          <% @personal_info[:tweets].each do |tweet|%>
+            <li id="li-padding"><%=tweet.content%></li>
+          <% end %>
+      </div>
+    <% end %>
+
+    <% unless @personal_info[:videos].empty? %>
+      <div class="personal-media">
+          <h2>VIDEOS</h2>
+          <% @personal_info[:videos].each do |video|%>
+            <li id="li-padding"><a href='<%=video.url%>'><%=video.title%></a></li>
+          <% end %>
+      </div>
+    <% end %>
+
+    <% unless @personal_info[:tracks].empty? %>
+      <div class="personal-media">
+          <h2>TRACKS</h2>
+          <% @personal_info[:tracks].each do |track|%>
+            <li id="li-padding"><a href='<%=track.track_url%>'><%=track.title%></a></li>
+          <% end %>
+      </div>
+    <% end %>
   </div>
 
 
