@@ -2,7 +2,10 @@ class UsersController < ApplicationController
 
 	before_action :authenticate_user!
 
-	def update_info 
+	def update_info
+		# This should be either of the two:
+		# current_user.fetch_social_data
+		# SocialData.load_for(current_user)
 	  current_user.load_tweets
 	  current_user.load_videos
 	  current_user.load_tracks

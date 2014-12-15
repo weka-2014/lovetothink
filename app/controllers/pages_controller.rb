@@ -3,8 +3,9 @@ class PagesController < ApplicationController
 	def home
 		if current_user
 			if session[:updated]
+				# better to used the named routes here like users_update_info_url
 				redirect_to '/personal'
-			else 
+			else
 				redirect_to '/users/update_info'
 			end
 		else
@@ -19,10 +20,9 @@ class PagesController < ApplicationController
 	end
 
 	def profile
-		id = params[:id]
+		id = params[:id] #no need for this ok to put in line 28
 		user = User.find(id)
 		@personal_info = user.personal_info
 	end
 
 end
-

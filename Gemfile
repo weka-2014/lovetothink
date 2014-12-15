@@ -35,7 +35,7 @@ gem 'devise'
 
 gem 'faker'
 
-gem 'table_print'
+gem 'table_print' # Are you using this for production? If not it should be in the development and/or test group.
 
 gem 'rails_12factor'
 
@@ -56,7 +56,7 @@ gem 'soundcloud', '~> 0.3.2'
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem 'simplecov', :require => false, :group => :test # No tests!!! O% coverage!!! You know better than this.
+  gem 'simplecov', require: false # No tests!!! O% coverage!!! You know and can do better than this!
   gem "rails_best_practices" # Run with `rails_best_practices`
   gem "reek" # Run with `reek app`
   gem "flog" # Run with `flog app`

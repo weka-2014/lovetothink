@@ -7,8 +7,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # You can break this up to be a bit more readable. Something like:
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :twitter_username, :youtube_username, :soundcloud_username, :name, :blurb)} 
+    permitted_devise_keys = [
+      :email, :password, :name, :blurb,
+      :twitter_username, :youtube_username, :soundcloud_username
+    ]
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(permitted_devise_keys) }
   end
- 
+
 end

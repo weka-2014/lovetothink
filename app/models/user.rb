@@ -1,3 +1,5 @@
+# There is a lot going on here and long methods that will be hard to test.
+# We can sit down and work through pulling it apart.
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :validatable
@@ -56,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def load_profile_img
-    case 
+    case
       when twitter_username != "" then self.update(image_url: TWITTER.user(twitter_username).attrs[:profile_image_url_https])
       when youtube_username != "" then self.update(image_url: YOUTUBE.profile(youtube_username).avatar)
       when soundcloud_username != "" then self.update(image_url: SOUNDCLOUD.get("/users/#{soundcloud_username}"))
@@ -67,7 +69,7 @@ class User < ActiveRecord::Base
 
   def load_tweets
     tweets.destroy_all
-    unless twitter_username.nil? 
+    unless twitter_username.nil?
     	tweet_data = TWITTER.user_timeline(twitter_username, :count => 5)
     	tweet_data.each do |tweet_object|
     		tweet = tweets.create(content: tweet_object.text)
@@ -87,7 +89,7 @@ class User < ActiveRecord::Base
       video_ids = activity.first(5).map { |action| action.video_id }
       video_data = video_ids.map { |video_id| YOUTUBE.video_by(video_id) }
       video_data.each do |video_object|
-        url = video_object.player_url 
+        url = video_object.player_url
         title = video_object.title
         description = video_object.description
         label = video_object.categories.map { |category| category.label }.first
@@ -104,11 +106,11 @@ class User < ActiveRecord::Base
       track_data.each do |track_object|
         image_url = track_object.artwork_url
         description = track_object.description
-        genre = track_object.genre 
+        genre = track_object.genre
         title = track_object.title
         track_url = track_object.permalink_url
         author = track_object.user.username
-        
+
         tag_string = track_object.tag_list
         strings = tag_string.scan(/["][^"]+["]/)
         strings.each do |string|
@@ -150,7 +152,7 @@ class User < ActiveRecord::Base
   			hashtag.text
   		end
   		{"content" => tweet.content, "hashtags" => hashtags}
-  	end 
+  	end
 
     current_user_video_data = current_user.videos.map do |video|
       {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author}
@@ -178,7 +180,7 @@ class User < ActiveRecord::Base
         {"title" => video.title, "description" => video.description, "label" => video.label, "author" => video.author}
       end
 
-      user_track_data = user.tracks.map do |track| 
+      user_track_data = user.tracks.map do |track|
         tags = track.tags.map do |tag|
           tag.name
         end
