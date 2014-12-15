@@ -1,9 +1,10 @@
 <body id="profile">
 
   <div id="header">
-    <h1> L2T </h1>
+  <a href="/personal"><h1>L2T</h1></a>  <!-- to railsify the link, how to include the h1 inside link_to-->
     <nav>
         <%= link_to 'SIGN OUT', '/users/sign_out', :method => :delete %>
+        <input type="submit" name="profile" value="profile"/>
     </nav>
   </div>
 
@@ -14,7 +15,7 @@
     </div>
 
     <div id="about">
-      <div id="personal-box">
+      <div class+"vertalign" id="personal-box">
         <h3><%=@personal_info[:name]%></h3>
         <p><%=@personal_info[:blurb]%></p>
         <div class="vertalign" id="personal-button">
@@ -24,7 +25,6 @@
     </div>
 
     <div id="map">
-<!--       <img src="http://static2.stuff.co.nz/1397882814/958/9959958.jpg"> -->
     </div>
 
   </div>
@@ -49,7 +49,6 @@
         <% end %>
     </div>
   </div>
-
 
   <div id="footer"></div>
 

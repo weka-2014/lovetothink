@@ -13,15 +13,19 @@ h2 { text-transform: uppercase; font-size: 30px; padding-top: 20px; padding-bott
 /*EVERYTHING: HEADER*/
 #header { position: absolute; width: 100%; height: 100px; top: 0; background-color: #D5C6DB; }
 h1 { text-align: center; font-size: 40px; padding: 10px; }
+#header > .
 
 /*EVERYTHING: FOOTER*/
 #footer { position: absolute; width: 100%; height: 100px; top: 800px; background-color: pink; }
 
 /*SIGN IN PAGE*/
 #signin > form > div.field > label { display: block; font-size: 14px; padding-top: 10px;}
+#signin > h3 {margin-bottom: 30px}
 
 /*SIGN UP PAGE*/
-#signup > form > div.field > label { display: block; margin-bottom: 12px; margin-top:10px; font-size: 14px}
+#signup {margin-top: 50px; margin-bottom: 50px;} /*so the text doesn't slide off the page*/
+#signup > form > div.field > label { display: block; margin-bottom: 12px; margin-top:10px; font-size: 14px;}
+#signup > h3 {margin-bottom: 30px }
 
 /*SIGNIN BUTTONS*/
 .actions {padding: 30px;}
@@ -41,7 +45,7 @@ h1 { text-align: center; font-size: 40px; padding: 10px; }
 /*PERSONAL: FEED: NEWS*/
 #personal > #feed > #news { position: absolute; width: 50%; height: 100%; left: 0; background-color: #C9C2C2; overflow: scroll; font-size: 13px; }
 div.personal-media { position: relative; height: auto; overflow: visible;}
-#li-padding { padding: 10px;}
+
 
 /*PERSONAL: FEED: MATCHES*/
 #matches { position: absolute; width: 50%; height: 100%; right: 0; background-color: #ACEADF; overflow: scroll; }
@@ -60,7 +64,8 @@ li.match { position: relative; width: 100%; height: 100px; border-top: 1px solid
 #profile > #info > #pic > #profile-img { width: 150px; height: 150px; border-radius:75px; -webkit-border-radius: 75px; -moz-border-radius: 75px; margin: 0 auto; }
 #profile > #info > #about { width: 40%; height: 100%; background-color: #F4EECA; float: left;}
 #profile > #info > #about > #personal-box {width: 70%; height: 100%; text-align: left; padding: 20px;}
-#profile> #info > #map > #personal-button {width: 30%; height: 100%; margin: 0 auto;}
+#profile > #info > #about > #personal-box > li {padding: 20px;}
+#profile > #info > #map > #personal-button {width: 30%; height: 100%; margin: 0 auto;}
 #profile > #info > #map {width: 30%; height: 100%; float: left;}
 
 /* PROFILE: FEED*/
@@ -68,4 +73,8 @@ li.match { position: relative; width: 100%; height: 100px; border-top: 1px solid
 div.profile-media { position: relative; height: auto; overflow: visible;}
 
 
-/*FF63BB*/
+/*DEVISE ERROR MESSAGE*/
+#error_explanation {font-size: 14px;}
+#error_explanation > h2 {font-size: 14px; color: red;}
+#error_explanation ul {font-size:14px; color: red; position: inherit; margin-bottom: 20px;}
+

@@ -30,13 +30,6 @@ ActiveRecord::Schema.define(version: 20141214041342) do
     t.datetime "updated_at"
   end
 
-  create_table "notes", force: true do |t|
-    t.integer  "customer_id"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "tags", force: true do |t|
     t.integer  "track_id"
     t.string   "name"
