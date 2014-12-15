@@ -1,0 +1,16 @@
+<h1><a href="/profile/<%=@users[:match].id%>"><%=@users[:match].name%></a></h1>
+
+<div id="messages">
+	<% @messages.each do |message| %>
+		<li>
+			<h2><%=message[:sender].name%></h2>
+			<p><%=message[:content]%></p>
+		</li>
+	<% end %>
+</div>
+
+<%= form_for @new_message, url: {action: "add_message"} do |f| %>
+	<%= hidden_field_tag :recipient_id, @users[:match].id %>
+	<%= f.text_area :content %><br>
+  <%= f.submit "message" %>
+<% end %>

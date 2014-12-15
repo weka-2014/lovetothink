@@ -1,0 +1,7 @@
+<h1>CONVERSATIONS</h1>
+<%= link_to 'return to personal profile', '/personal' %>
+<% @conversations.each do |conversation| %>
+	<li>
+		<h2><a href="/conversations/<%=conversation[:id]%>"><%=conversation[:match].name%></a></h2>
+	</li>
+<% end %>

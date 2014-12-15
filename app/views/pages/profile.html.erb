@@ -17,9 +17,7 @@
       <div id="personal-box">
         <h3><%=@personal_info[:name]%></h3>
         <p><%=@personal_info[:blurb]%></p>
-        <div class="vertalign" id="personal-button">
-          <input type="submit" name="message" value="message"/>
-        </div>
+        <%= link_to 'START CONVERSATION', conversations_create_path(@ids, user_1_id: current_user.id, user_2_id: @personal_info[:user_id]), :method => :post %>
       </div>
     </div>
 
